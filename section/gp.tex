@@ -1,0 +1,31 @@
+\section{BLR and GP}
+
+\subsection*{Bayesian Linear Regression}
+
+$Y=X\beta+\epsilon$, $\epsilon\sim \normal(0, \sigma^2)$ and a prior $\beta \sim \normal(0, \Lambda^{-1})$. By Bayesian, $\beta \mid X, Y \sim \normal(\mu_\beta, \Sigma_\beta)$, where $\mu_\beta = (X^T X+\sigma^2\Lambda)^{-1}X^T Y$ and $\Sigma_\beta = \sigma^2 (X^T X+\sigma^2 \Lambda)^{-1}$. MAP estimation of this prior (i.e., $\mu_\beta$) is equivalent to Ridge regression given $\Lambda = \lambda I$ and $\sigma=1$.
+
+When $\Lambda=\lambda I$, under the prior, $Y\sim \normal(0, \frac{1}{\lambda}X^T X+\sigma^2 I)$. Therefore, $\cov(y_i, y_j) = \frac{1}{\lambda}x_i^T x_j$. It means a prior that closer samples is more similar, i.e., $\cov(y_i, y_j)$ is large when $x_i^T x_j$ is large. The kernel $X^T \Lambda^{-1} X$ is thus called linear kernel. When a general kernel is used, Gaussian Process appears.
+
+\subsection*{Gaussian Process}
+
+\subsubsection*{Kernel Function}
+A function is a kernel iff $k(x, x^\prime)=k(x^\prime, x)$ (symmetry) and $\int_\Omega k(x, x^\prime) f(x) f(x^\prime) dx dx^\prime \ge 0$ for any $f \in L_2$ and $\Omega \in \mathcal{R}^d$ (semi-positiveness in continuous case) or $K(X)$ is a valid covariance matrix for any $X$ (semi-positiveness in discrete case). The latter is equivalent to either (1) $\sum_{i,j} a_i a_j K(x_i, x_j) \ge 0$ for any $a_{i,j}$ and $k_{i,j}$, or (2) $k(x, x^\prime) = \phi(x)^T \phi(x^\prime)$ for some $\phi$.
+
+Assume $k_{1,2}$ are valid kernels, then the following are valid kernels:
+\begin{enumerate}
+    \item $k(x, x^\prime) = k_1(x, x^\prime) + k_2(x, x^\prime)$.
+    \item $k(x, x^\prime) = k_1(x, x^\prime)\cdot k_2(x, x^\prime)$. Proof: let $V\sim \normal(0, K_1)$, $W\sim \normal(0, k_2)$ and is independent to $V$, then $\cov(V_i W_i, V_j W_j) = \cov(V_i, V_j)\cov(W_i, W_j) = k_1\cdot k_2(x_i, x_j)$.
+    \item $k(x, x^\prime) = c k_1(x, x^\prime)$ for constant $c>0$.
+    \item $k(x, x^\prime) = f(k_1(x, x^\prime))$ if $f$ is a polynomial with positive coefficients or the exp. Proof: polynomial can be proved by applying the product, positive scaling and addition. Exp can be proved by taking limit on the polynomial.
+    \item $k(x, x^\prime) = f(x) k_1(x, x^\prime) f(x^\prime)$.
+    \item $k(x, x^\prime) = k_1(\phi(x), \phi(x^\prime))$ for any function $\phi$.
+\end{enumerate}
+
+Example: RBF kernel $k(x,y) = \exp(-\frac{1}{2\sigma^2}||x-y||^2) = \exp(-\frac{1}{2\sigma^2} ||x||^2) \exp(\frac{1}{\sigma^2}x^T y) \exp(-\frac{1}{2\sigma^2} ||y||^2)$ is valid. Since $x^T y$ is the linear kernel and thus $\exp(\frac{1}{\sigma^2}x^T y)$ is a valid kernel, let $f(x) = \exp(-\frac{1}{2\sigma^2} ||x||^2)$, we get the RBF function equals $f(x) k(x, y) f(y)$, which is a valid kernel.
+
+\subsubsection*{Mercer's Theorem}
+Assume $k(x, x^\prime)$ is a valid kernel. Then there exists an orthogonal basis $e_i$ and $\lambda_i\ge 0$, s.t. $k(x, x^\prime) = \sum_{i} \lambda_i e_i(x) e_i(x^\prime)$.
+
+\subsection*{Conditional Gaussian}
+
+$\E (y_2 \mid y_1) = \mu_2+\Sigma_{21}\Sigma_{11}^{-1} (y_1-\mu_1)$, $\var(y_2\mid y_1) = \Sigma_{22} - \Sigma_{21}\Sigma_{11}^{-1}\Sigma_{12}$.

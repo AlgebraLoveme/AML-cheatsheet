@@ -1,0 +1,69 @@
+\section{Linear Methods for Classification}
+
+\subsection*{Concept Comparison}
+
+\begin{enumerate}
+    \item Probabilistic Generative, modeling $p(x, y)$: (1) can create new samples, (2) outlier detection, (3) probability for prediction, (4) high computational cost and (5) high bias.
+    \item Probabilistic Discriminative, modeling $p(y\mid x)$: (1) probability for prediction, (2) medium computational cost and (3) medium bias.
+    \item Discriminative, modeling $y=f(x)$: (1) no probability for prediction, (2) low computational cost and (3) low bias.
+\end{enumerate}
+
+\subsection*{Infer $p(x,y)$ for classification problems}
+
+Use $p(x,y) = p(y)p(x\mid y)$. Since $y$ has finite states, model $p(y)$ and $p(x\mid y)$ for different $y$. The modeling requires to (1) guess a distribution family and (2) infer parameters by MLE.
+
+\subsection*{Compute $p(y\mid x)$ by discriminant analysis (DA)}
+
+\subsubsection*{Linear DA}
+
+Goal: classify a sample into two Gaussian distribution with $\Sigma_0 = \Sigma_1$.
+After calculation, $p(y=1\mid x) = 1/(1+\exp(-\log\frac{p(x\mid y=1)p(y=1)}{p(x\mid y=0)p(y=0)})) = 1/(1+\exp(w_1^T x +w_0))$ since the quadratic term is eliminated due to $\Sigma_0=\Sigma_1$.
+
+\subsubsection*{Quadratic DA}
+
+Goal: classify a sample into two Gaussian distribution with $\Sigma_0 \ne \Sigma_1$.
+After calculation, $p(y=1\mid x) = 1/(1+\exp(x^T W x + w_1^T x +w_0))$.
+
+\subsection*{Optimization Methods}
+
+\subsubsection*{Optimal Learning Rate for Gradient Descent}
+
+Goal: find $\eta^* = \argmin_\eta L(w^k - \eta\cdot \nabla L(w^k))$. By Taylor expansion of $L(w^{k+1})$ at $w^k$ and solve for the optimal $\eta$, we get $\eta^* = \frac{||\nabla L(w^k)||^2}{\nabla L(w^k)^T H_L(w^k) \nabla L(w^k)}$.
+
+However, naive gradient descent has two weaknesses: (1) it often has a zig-zag behavior, especially in a very narrow, long and slightly downward valley; (2) the gradient update is small near the stationary point. This can be mitigated by adding a momentum term in the update: $w^{k+1} = w^k -\eta \nabla L(w^k) + \mu^k (w^k -w^{k-1})$ which speeds the update towards the ``common'' direction.
+
+\subsubsection*{Newton's Method}
+
+Taylor-expand $L(w)$ at $w_k$ to derive the optimal $w^{k+1}$: $L(w) \approx L(w) + (w-w^k)^T \nabla L(w^k) + \frac{1}{2}(w-w^k)^T H_L(w^k) (w-w^k) \Rightarrow w^{k+1} = w^k - H_L^{-1}(w^k)\nabla L(w^k)$. 
+
+Pros: (1) better updates compared to GD since it uses the second Taylor term and (2) does not require learning rate.
+
+Cons: requires $H_L^{-1}$ which is expensive.
+
+\subsection*{Bayesian Method}
+
+In most cases, the posterior is intractable. Use approximation of posterior instead.
+
+\subsubsection*{Laplacian Method}
+
+Idea: approximate posterior near the MAP estimation with a Gaussian distribution.
+$p(w\mid X, Y) \propto p(w, X, Y) \propto \exp(-R(w))$, where $R(w) = -\log p(w, X, Y)$. Let $w^* = \argmin R(w)$ be the MAP estimation and Taylor-expand $R(w)$ at $w^*$: $R(w) \approx R(w^*) + \frac{1}{2}(w-w^*)^T H_R(w^*) (w-w^*)$. Therefore, $p(w\mid X,Y)\propto \exp(-R(w^*) -\frac{1}{2}(w-w^*)^T H_R(w^*) (w-w^*))$ and thus $(w\mid X,Y) \sim \normal(w^*, H_R^{-1}(w^*))$.
+
+\subsubsection*{Bayesian Information Criterion (BIC)}
+
+We use prior $w\sim \normal(\mu_0, \alpha_0 I_d)$ for $\alpha_0$ sufficiently large (little prior). Since $p(w\mid X, Y) = p(w, X, Y) / p(X, Y) \approx \exp(-R(w^*) -\frac{1}{2}(w-w^*)^T H_R(w^*) (w-w^*)) / p(X, Y)$ is a Gaussian distribution, we have $p(X, Y)\approx e^{-R(w^*)}(2\pi)^{-d/2}|H_R(w^*)|^{-1/2}$. Therefore, $\log p(X,Y)\approx -R(w^*) -\frac{d}{2}\log(2\pi) - \frac{1}{2}\log |H_R(w^*)| = \log p(w^*) + \log p(X, Y\mid w^*)-\frac{d}{2}\log(2\pi) - \frac{1}{2}\log |H_R(w^*)|$. Further, notice that $H_R(w^*) = \frac{\partial^2}{\partial ww^T}(-\log p(w^*)-\log p(X, Y \mid w^*)) = -(\alpha_0 I_d)^{-1} - N \E_{x, y} (\frac{\partial^2}{\partial ww^T} \log p(x,y\mid w^*)) \approx N \mathbf{I}$, where $\mathbf{I}$ is the fisher information.
+Therefore, we define BIC = $-\log p(X, Y\mid w^*)+ \frac{d}{2}\log N$ and thus $\log p(X, Y) \approx \text{const} - \text{BIC}$. A lower BIC means (approximately) a larger evidence (log-likelihood of samples) and thus a better model.
+
+\subsection*{LDA by loss minimization}
+
+\subsubsection*{Perceptron}
+
+Goal: for $y_i\in\{0,1\}$, find $w$, s.t. $y_i w^T x_i >0$ for any $i$. The classification function is $c(x) = \sgn(w^T x)$.
+
+$L(y, c(x)) = 0$ if $y w^T x >0$ and $L(y, c(x)) = -y w^T x$ o.w. By gradient descent, the Perceptron is guaranteed to converge if (1) the data is linearly separable, (2) learning rate $\eta(k)>0$, (3) $\sum_k \eta(k) \rightarrow +\infty$ and (4) $(\sum_k \eta(k)^2)/(\sum_k \eta(k))^2 \rightarrow 0$. However, there exists multiple solutions if the data is linearly separable.
+
+\subsubsection*{Fisher's LDA}
+
+Idea: project the two distribution into one dimension and maximize the ratio of the variance between the classes and the variance within the classes, i.e., $\max (w^T u_1-w^T u_0)^2/(w^T S w)$, where $S = \Sigma_0+\Sigma_1$. Let gradient be zero and solve for $w^*$, we get $w^*\propto S^{-1}(u_1-u_0)$.
+
+We first compute $w^*$ and fit distributions of the two-class projection. Then apply Bayesian decision theory to make classification.

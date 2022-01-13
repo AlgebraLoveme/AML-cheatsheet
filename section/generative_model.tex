@@ -1,0 +1,13 @@
+\section{Generative Models}
+
+Variational Autoencoder: use approximated probability to model $p(z \mid x)$ and the $p(x\mid z)$.
+\begin{itemize}
+    \item Pro: can be used as feature representation.
+    \item Con: generated images are blurrier and relatively low compared to GAN.
+\end{itemize}
+
+Generative Adversarial Network: use 2-player game to sample from $p(x)$.
+\begin{itemize}
+    \item Pro: SOTA.
+    \item Con: (1) unstable, (2) potential mode collapse and (3) cannot solve $p(x)$.
+\end{itemize}

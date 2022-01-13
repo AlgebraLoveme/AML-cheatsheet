@@ -1,0 +1,4 @@
+Combinatory
+Categorial
+Kleene
+adaptively

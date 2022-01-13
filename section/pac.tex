@@ -1,0 +1,14 @@
+\section{PAC Learning}
+
+Definitions:
+\begin{itemize}
+    \item A learning algorithm $\mathcal{A}$ can learn $c\in C$ if there is a poly(.,.), s.t. for (1) any distribution $\mathcal{D}$ on $\mathcal{X}$ and (2) $\forall 0<\epsilon<\frac{1}{2},0<\delta<\frac{1}{2}$, $\mathcal{A}$ outputs $\hat{c}\in \mathcal{H}$ given a sample of size at least poly($\frac{1}{\epsilon}$, $\frac{1}{\delta}$, size($c$)) such that $P(\mathcal{R}(\hat{c})-\inf_{c\in C}\mathcal{R}(c)\le\epsilon) \ge 1-\delta$.
+    \item $\mathcal{A}$ is called an efficient PAC algorithm if it runs in polynomial of $\frac{1}{\epsilon}$ and $\frac{1}{\delta}$.
+    \item $C$ is (efficiently) PAC-learnable from $\mathcal{H}$ if there is an algorithm $\mathcal{A}$ that (efficiently) learns $C$ from $\mathcal{H}$.
+\end{itemize}
+
+VC inequality:
+\begin{itemize}
+    \item For an ERM $\hat{c}^*_n$, $\mathbf{P}\left(\mathcal{R}\left(\hat{c}_{n}^{*}\right)-\inf _{c \in \mathcal{C}} \mathcal{R}(c)>\epsilon\right) \leq 2|\mathcal{C}| \exp \left(-\frac{n \epsilon^{2}}{2}\right)$.
+    \item Finite VC-dimension means PAC-learnable.
+\end{itemize}

@@ -1,0 +1,13 @@
+\section{Convex Optimization}
+
+Definition: the objective is convex and the feasible set is convex. The standard form is to minimize a convex function ($f(w)$ for convex $f$) under affine equality constraint ($g_i(w)=0$ for affine $g_i$) and convex non-positive constraint ($h_i(w)\le 0$ for convex $h_i$).
+
+\subsection*{How to Solve}
+
+(1) Define Lagrangian: $L(w, \lambda, \alpha) = f(w)+\sum_i \lambda_i g_i(w) + \sum_j \alpha_j h_j(w)$ and $\alpha_j\ge 0$.
+
+(2) Check whether strong duality holds using Slater's condition (sufficient but not necessary): there is a strictly feasible point, i.e., $\exists w_0$, s.t. $g_i(w_0)=0$ and $h_i(w_0)<0$.
+
+(3) Solve for $dL(w)=0$, $g_i(w)=0$,  $\alpha\ge 0$, $h_j(w)\le 0$ and $\alpha_j h_j(w) = 0$ (complementary slackness).
+
+(4) Weak duality always holds and when Slater's condition holds it equals  $\min_w f(w)$: solve $\max_{\lambda, \alpha} \Theta(\lambda, \alpha)$ s.t. $\alpha\ge 0$, where $\Theta(\lambda, \alpha) = \min_w L(w, \lambda, \alpha)$. The optimal in the weak duality is a lower bound for $\min_w f(w)$ since $\Theta(\lambda, \alpha)\le \min_w f(w)$ for any $\lambda$ and $\alpha$.

@@ -1,0 +1,29 @@
+\section{Non-parametric Bayesian Method}
+
+\subsection*{Property of NIW}
+
+Normal Inverse Wishart distribution $\mu, \Sigma \sim NIW(\boldsymbol{m}_0, k_0, v_0, \boldsymbol{S}_0)$ is the conjugate prior of multivariate Gaussian distribution. It has the following properties:
+\begin{itemize}
+    \item $\mu \mid m_0, k_0, \Sigma \sim \normal(m_0, \frac{1}{k_0}\Sigma)$.
+    \item $\Sigma \mid v_0, S_0 \sim \mathcal{W}^{-1}(S_0, v_0)$, where $\mathcal{W}^{-1}$ is the inverse Wishart distribution.
+    \item Assume $X\sim \normal(\mu, \Sigma)$. Then $\mu, \Sigma\mid X \sim NIW(\boldsymbol{m}_p, k_p, v_p, \boldsymbol{S}_p)$, 
+    where $\boldsymbol{m}_{p}=\frac{k_{0}}{k_{0}+N} \boldsymbol{m}_{0}+\frac{N}{k_{0}+N} \overline{\boldsymbol{X}}$, $k_p=k_0+N$, $v_p=v_0+N$ and $\boldsymbol{S}_{p}=\boldsymbol{S}_{0}+\boldsymbol{S}_{\bar{X}}+k_{0} \boldsymbol{m}_{0} \boldsymbol{m}_{0}^{\top}-k_{p} \boldsymbol{m}_{p} \boldsymbol{m}_{p}^{\top}$ ($\boldsymbol{S}_{\bar{X}}$ is the sample covariance of $X$). That is, the posterior only depends on sample mean and covariance.
+\end{itemize}
+
+\subsection*{Bayesian Inference for Multivariate Gaussian with Semi-Conjugate Prior}
+
+Goal: estimate $\mu, \Sigma$ given the NIW prior and $X$. The problem is $\mu, \Sigma\mid X$ is hard to sample from while we can easily sample from $\mu \mid \Sigma, X \sim \normal(m_p, \frac{1}{k_p}\Sigma)$ and $\Sigma \mid X\sim \sim \mathcal{W}^{-1}(S_p, v_p)$. Apply Gibbs sampling, we use $\mu_t \overset{\$}{\leftarrow} p(\mu \mid \Sigma_{t-1}, X)$ and $\Sigma_t \overset{\$} {\leftarrow} p(\Sigma \mid \mu_{t-1}, X)$.
+
+\subsection*{BI for Gaussian Mixture Model}
+
+Setting: $\mu$ and $\Sigma$ follows the same prior, and we add a ``class index'' variable $z_i\sim \cat(\pi)$, where $\pi\sim \dir(\alpha)$. $\dir(\alpha)$ is the Dirichlet distribution which generates $\pi$ satisfying $\sum_{i=1}^k \pi_i=1$ and is the conjugate prior for categorical distribution. Use Gibbs sampling, we can estimate $\mu, \Sigma, z_i, \pi$. Note that here since \#classes is predetermined, $\alpha$ is actually not needed.
+
+Concept here: d-separation, used to convert connectedness in the causal graph to conditional independence. If two variables are d-separated, then they are independent; o.w. not guaranteed to be dependent. Two variables are d-separated if all \emph{undirected} paths between them are inactive. If any triple ($x,y,z$) in a path is of the following inactive form, then the whole path is inactive: (1) $x - y - z$ is not of the form $x \rightarrow y \leftarrow z$ $\bigwedge$ $y$ is observed (conditioned); (2) $x - y - z$ is of the form $x \rightarrow y \leftarrow z$ $\bigwedge$ no descendants of $y$ ($y$ included) is observed.
+
+\subsection*{BI for Non-Parametric GMM}
+
+GEM distribution is a special case of Dirichlet process which only takes one parameter (indicating no difference between classes). It gives a probability $\pi$ of a categorical distribution with infinite \#classes. We sample $\pi_i$ sequentially (stick-breaking): $\beta_i\sim \beta(1,\alpha)$, $\pi_1=\beta_1$ and $\pi_t=\prod_{j<t}(1-\beta_j)\beta_t$. We can use GEM distribution to adaptively learn the required \#clusters.
+
+Another approach is to directly model $z_i$ instead of drawing $z_i$ from $\cat(\pi)$ by Chinese Restaurant Process. The CRP($\alpha$) decides for every incoming sample $X_n$ which cluster $z_n$ it belongs to by $p(z_n=k)=\#\text{\{samples in cluster k\}}/(\alpha+n-1)$ and $p(z_n=k)=\alpha/(\alpha+n-1)$ for the left most cluster that contains no samples (a new cluster). $\alpha$ is the concentration parameter that defines how likely a sample belongs to an old cluster. In expectation, \#clusters = $O(\alpha\log N)$. The order of the samples incoming does not change the distribution of the partition.
+
+Note that $z_n$ in CRP only depends on $z_{j<n}$. Therefore, we can use collapsed Gibbs sampling for $z^t$: $z^t \sim p(z\mid z^{t-1}, X)$. 

@@ -1,0 +1,14 @@
+\section{Maximum Likelihood Estimator}
+
+Three properties of maximum likelihood estimator:
+\begin{enumerate}
+    \item $\theta_{ML}$ is consistent. $\theta_{ML}\rightarrow \theta_0$ when $n\rightarrow \infty$.
+    \item $\theta_{ML}$ is asymptotically normal. $\sqrt{n}(\theta_{ML}-\theta_0) \sim \normal(0, I_n(\theta_0)$ when $n\rightarrow \infty$ and $I_n(\theta_0)$ is the fisher information.
+    \item $\theta_{ML}$ is asymptotically efficient. $\theta_{ML}$ minimizes $\E(\theta-\theta_0)^2$ when $n\rightarrow \infty$ because the asymptotic variance equals the Rao-Cramer bound (MLE is asymptotically unbiased). Note: when $n$ is finite, $\theta_{ML}$ is not necessarily efficient, e.g., Stein estimator is universally more efficient for single sample.
+\end{enumerate}
+
+Rao-Cramer bound: for any \emph{unbiased} estimator $\hat{\theta}$ of $\theta_0$, $\E (\hat{\theta}-\theta_0)^2 \ge 1/I_n(\theta_0)$, where $I_n(\theta) = -\E (\frac{\partial^2}{\partial \theta^2} \log f(X;\theta)\mid \theta) = \E (\frac{\partial}{\partial \theta} \log f(X; \theta) \mid \theta)^2$ is the fisher information.
+
+Sketch of Proof: define $\Lambda = \frac{\partial \log P(X;\theta)}{\partial \theta}$. Cauchy-Schwarz says $\cov^2(\Lambda, \hat{\theta})\le \var(\Lambda)\var(\hat{\theta}) = \E(\Lambda^2) \var(\hat{\theta})$ because $\E \Lambda=0$. Note that $\cov(\Lambda, \hat{\theta}) = \E(\Lambda\hat{\theta}) = \int_X \hat{\theta}(x) \frac{\partial}{\partial \theta}f(x;\theta) dx = \frac{\partial}{\partial \theta} \int_X \hat{\theta}(x) f(x;\theta) dx = \frac{\partial}{\partial \theta} \E \hat{\theta} = 1$. Therefore, $\var(\hat{\theta}) \ge 1/\E(\Lambda^2)$.
+
+However, when the dimension of problem goes to infinity while keeping the data-dim ratio fixed, MLE is biased and the $p$-values are unreliable. 
