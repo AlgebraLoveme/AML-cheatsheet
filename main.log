@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.12.22)  2 FEB 2022 21:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.12.22)  2 FEB 2022 21:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1284,20 +1284,20 @@ File: figures/GMM.png Graphic file (type png)
 <use figures/GMM.png>
 Package pdftex.def Info: figures/GMM.png  used on input line 24.
 (pdftex.def)             Requested size: 99.03558pt x 62.6256pt.
-) (./section/pac.tex) (./section/appendix.tex) [2 <./figures/d-sep.png> <./figures/GMM.png>] [3] (./main.aux) ) 
+) (./section/pac.tex) (./section/appendix.tex) [2 <./figures/d-sep.png> <./figures/GMM.png>] (./main.aux) ) 
 Here is how much of TeX's memory you used:
  23966 strings out of 479382
  471282 string characters out of 5873307
- 879883 words of memory out of 5000000
+ 879882 words of memory out of 5000000
  40197 multiletter control sequences out of 15000+600000
  528708 words of font info for 323 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,15n,111p,801b,364s stack positions out of 5000i,500n,10000p,200000b,80000s
 {d:/texlive/2020/texmf-dist/fonts/enc/dvips/sourcesanspro/a_emkxm5.enc}{d:/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}{d:/texlive/2020/texmf-dist/fonts/enc/dvips/kpfonts/kpfonts-expert.enc}<d:/texlive/2020/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-Bold.pfb><d:/texlive/2020/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-It.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpbmi.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpex.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpmi.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpmia.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpmne.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpsy.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpsyb.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpsyc.pfb>
-Output written on main.pdf (3 pages, 412613 bytes).
+Output written on main.pdf (2 pages, 412198 bytes).
 PDF statistics:
- 77 PDF objects out of 1000 (max. 8388607)
- 54 compressed objects within 1 object stream
+ 74 PDF objects out of 1000 (max. 8388607)
+ 52 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  67607 words of extra memory for PDF output out of 74296 (max. 10000000)
 

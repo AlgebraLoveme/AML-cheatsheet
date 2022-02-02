@@ -25,7 +25,7 @@ Data model: latent $K$ class variable $z_i \sim \operatorname{Cat}(\pi)$, observ
 \end{center}
 % \vspace{-0.5cm}
 
-\textbf{d-seperation}: for verifying conditional independence. Given with observed variable set $C$, if any path from variable $A$ to $B$ is blocked on probability graph, then $A$ and $B$ are independent condition on $C$. By this thm: (1) $z_i$, $z_j$ (2) $\mu$, $\pi$  (3) $\Sigma$, $\pi$ all independent condition on other parameter. Sampling procedure: (1) $z^{(t)} \leftarrow p\left(\cdot | x, \mu^{(t-1)}, \Sigma^{(t-1)}\right)$, (2) $\mu^{(t)} \leftarrow p\left(\cdot | x, \Sigma^{(t-1)}, z^{(t)}\right)$, (3) $\Sigma^{(t)} \leftarrow p\left(\cdot | x, \mu^{(t)}, z^{(t)}\right)$, (4) $\pi^{(t)} \leftarrow p\left(\cdot | x, z^{(t)}\right)$
+\textbf{d-seperation}: for verifying conditional independence. Given with observed variable set $C$, if every path from variable $A$ to $B$ is blocked on probability graph, then $A$ and $B$ are independent condition on $C$. By this thm: (1) $z_i$, $z_j$ (2) $\mu$, $\pi$  (3) $\Sigma$, $\pi$ all independent condition on other parameter. Sampling procedure: (1) $z^{(t)} \leftarrow p\left(\cdot | x, \mu^{(t-1)}, \Sigma^{(t-1)}\right)$, (2) $\mu^{(t)} \leftarrow p\left(\cdot | x, \Sigma^{(t-1)}, z^{(t)}\right)$, (3) $\Sigma^{(t)} \leftarrow p\left(\cdot | x, \mu^{(t)}, z^{(t)}\right)$, (4) $\pi^{(t)} \leftarrow p\left(\cdot | x, z^{(t)}\right)$
 
 \subsection*{BI for Non-Parametric GMM}
 \textbf{Goal}: sample from infinite categorical distri.
