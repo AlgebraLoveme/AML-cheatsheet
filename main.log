@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.12.22)  29 JAN 2022 14:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.12.22)  2 FEB 2022 21:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1269,20 +1269,35 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 
 
-{d:/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./section/convex_opt.tex) (./section/SVM.tex) (./section/ensemble.tex) (./section/generative_model.tex) (./section/nonparam-Bayes.tex) (./section/pac.tex) (./section/appendix.tex) [2] (./main.aux) ) 
+{d:/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./section/convex_opt.tex) (./section/SVM.tex) (./section/ensemble.tex) (./section/generative_model.tex) (./section/nonparam-Bayes.tex
+Overfull \hbox (12.25575pt too wide) in paragraph at lines 4--6
+[]\OML/jkp/m/it/10 p\OT1/jkp/m/n/10 (-20) (\OML/jkp/m/it/10 ^^V; \U/jkpmia/m/it/10 ^^F\OMS/jkp/m/n/10 j\OML/jkp/m/it/10 m[]; k[]; v[]; S[]\OT1/jkp/m/n/10 (-20) ) = \OMS/jkp/m/n/10 N\OT1/jkp/m/n/10 (-20) (\OML/jkp/m/it/10 ^^V\OMS/jkp/m/n/10 j\OML/jkp/m/it/10 m; \U/jkpmia/m/it/10 ^^F\OML/jkp/m/it/10 =k[]\OT1/jkp/m/n/10 (-20) )\OMS/jkp/m/n/10 W[]\OT1/jkp/m/n/10 (-20) (\U/jkpmia/m/it/10 ^^F\OMS/jkp/m/n/10 j\OML/jkp/m/it/10 S[]; v[]\OT1/jkp/m/n/10 (-20) )$[]\T1/jkp/m/n/10 (-20) . 
+ []
+
+<figures/d-sep.png, id=21, 548.0475pt x 646.415pt>
+File: figures/d-sep.png Graphic file (type png)
+<use figures/d-sep.png>
+Package pdftex.def Info: figures/d-sep.png  used on input line 23.
+(pdftex.def)             Requested size: 59.42195pt x 70.08006pt.
+<figures/GMM.png, id=23, 996.72375pt x 630.355pt>
+File: figures/GMM.png Graphic file (type png)
+<use figures/GMM.png>
+Package pdftex.def Info: figures/GMM.png  used on input line 24.
+(pdftex.def)             Requested size: 99.03558pt x 62.6256pt.
+) (./section/pac.tex) (./section/appendix.tex) [2 <./figures/d-sep.png> <./figures/GMM.png>] [3] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 23937 strings out of 479382
- 470966 string characters out of 5873307
- 877014 words of memory out of 5000000
- 40187 multiletter control sequences out of 15000+600000
- 527328 words of font info for 311 fonts, out of 8000000 for 9000
+ 23966 strings out of 479382
+ 471282 string characters out of 5873307
+ 879883 words of memory out of 5000000
+ 40197 multiletter control sequences out of 15000+600000
+ 528708 words of font info for 323 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,15n,111p,797b,364s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 108i,15n,111p,801b,364s stack positions out of 5000i,500n,10000p,200000b,80000s
 {d:/texlive/2020/texmf-dist/fonts/enc/dvips/sourcesanspro/a_emkxm5.enc}{d:/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}{d:/texlive/2020/texmf-dist/fonts/enc/dvips/kpfonts/kpfonts-expert.enc}<d:/texlive/2020/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-Bold.pfb><d:/texlive/2020/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-It.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpbmi.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpex.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpmi.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpmia.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpmne.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpsy.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpsyb.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpsyc.pfb>
-Output written on main.pdf (2 pages, 226790 bytes).
+Output written on main.pdf (3 pages, 412613 bytes).
 PDF statistics:
- 69 PDF objects out of 1000 (max. 8388607)
- 51 compressed objects within 1 object stream
+ 77 PDF objects out of 1000 (max. 8388607)
+ 54 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 67597 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 67607 words of extra memory for PDF output out of 74296 (max. 10000000)
 
