@@ -1,13 +1,25 @@
 \section{Generative Models}
 
-Variational Autoencoder: use approximated probability to model $p(z \mid x)$ and the $p(x\mid z)$.
-\begin{itemize}
-    \item Pro: can be used as feature representation.
-    \item Con: generated images are blurrier and relatively low compared to GAN.
-\end{itemize}
+\textbf{ELBO} $\log p(y) = \log \int p(y \mid \theta) p(\theta) d \theta = \log $ \\ $\mathbb{E}_{\theta \sim q}\left[p(y \mid \theta) \frac{p(\theta)}{q(\theta)}\right] \geq \mathbb{E}_{\theta \sim q}\left[\log \left(p(y \mid \theta) \frac{p(\theta)}{q(\theta)}\right)\right]  = \mathbb{E}_{\theta \sim q}[\log p(y \mid \theta)]-K L(q \| p(\cdot))$
 
-Generative Adversarial Network: use 2-player game to sample from $p(x)$.
-\begin{itemize}
-    \item Pro: SOTA.
-    \item Con: (1) unstable, (2) potential mode collapse and (3) cannot solve $p(x)$.
-\end{itemize}
+\textbf{VAE} Goal: Find a latent representation $z$ of $x$ with simple prior $p_\theta(z)$. Problem: $p_\theta(x) = \mathbb{E}_{\theta}p(x|z)$ intractable. Solution: use encoder net $q_e(x|z)$ and $q_d(z|x)$ to model conditional and posterior prob.
+
+\textbf{ELBO for VAE training} loss $l=\sum \log \left(p_{\theta}\left(x_{i}\right)\right)$
+% \vspace{-0.4cm}
+\begin{tiny}
+    \begin{equation*}
+        \begin{aligned}
+             & \log \left(p_{\theta}\left(x_{i}\right)\right)=\mathbb{E}_{Z \sim q_{\phi}\left(z \mid x_{i}\right)}\left[\log p_{\theta}\left(x_{i}\right)\right] = \mathbb{E}_{Z}\left[\log \frac{p_{\theta}\left(x_{i} \mid z\right) p_{\theta}(z)}{p_{\theta}\left(z \mid x_{i}\right)}\right]                                                                                                                                                                                                                                                                                                                      \\
+             & = \mathbb{E}_{Z}\left[\log \frac{p_{\theta}\left(x_{i} \mid z\right) p_{\theta}(z)}{p_{\theta}\left(z \mid x_{i}\right)} \frac{q_{\phi}\left(z \mid x_{i}\right)}{q_{\phi}\left(z \mid x_{i}\right)}\right]                                                                                                                                                                                                                                                                                                                                                                                             \\
+             & = \mathbb{E}_{Z}\left[\log p_{\theta}\left(x_{i} \mid z\right)\right] -\mathbb{E}_{Z}\left[\log \frac{q_{\phi}\left(z \mid x_{i}\right)}{p_{\theta}(z)}\right]+\mathbb{E}_{Z}\left[\log \frac{q_{\phi}\left(z \mid x_{i}\right)}{p_{\theta}\left(z \mid x_{i}\right)}\right] = \\
+             & \underbrace{\mathbb{E}_{Z}\left[\log p_{\theta}\left(x_{i} \mid z\right)\right]-D_{K L}\left(q_{\phi}\left(z \mid x_{i}\right) \| p_{\theta}(z)\right)}_{\mathcal{L}\left(x_{i}, \theta, \phi\right)}+\underbrace{D_{K L}\left(q_{\phi}\left(z \mid x_{i}\right) \| p_{\theta}\left(z \mid x_{i}\right)\right)}_{\geq 0}
+        \end{aligned}
+    \end{equation*}
+\end{tiny}
+% \vspace{-0.4cm}
+
+\textbf{Generative Adversarial Network}: Generator $G$ and Discriminator $D$. Optimize $\min _{G} \max _{D} V(D, G)$ where $V(D, G) = \mathbb{E}_{x \sim p_{\text {data }}(x)}[\log D(x)]+\mathbb{E}_{z \sim p_{z}(z)}[\log (1-D(G(z)))]$
+
+
+
+\section{Convergence of SGD, Robbins-Monro}
