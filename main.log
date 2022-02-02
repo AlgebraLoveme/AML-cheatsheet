@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.12.22)  13 JAN 2022 19:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.12.22)  29 JAN 2022 14:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1158,15 +1158,15 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: landscape 
-* h-part:(L,W,R)=(5.69054pt, 833.66577pt, 5.69054pt)
-* v-part:(T,H,B)=(5.69054pt, 586.1268pt, 5.69054pt)
+* h-part:(L,W,R)=(11.38109pt, 822.28467pt, 11.38109pt)
+* v-part:(T,H,B)=(11.38109pt, 574.7457pt, 11.38109pt)
 * \paperwidth=845.04684pt
 * \paperheight=597.50787pt
-* \textwidth=833.66577pt
-* \textheight=586.1268pt
-* \oddsidemargin=-66.57945pt
-* \evensidemargin=-66.57945pt
-* \topmargin=-103.57945pt
+* \textwidth=822.28467pt
+* \textheight=574.7457pt
+* \oddsidemargin=-60.8889pt
+* \evensidemargin=-60.8889pt
+* \topmargin=-97.8889pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=11.0pt
@@ -1251,58 +1251,12 @@ LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/m/it' aliased to
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/regular/it' will be
 (Font)              scaled to size 10.0pt on input line 11.
 
-Overfull \hbox (4.15416pt too wide) in paragraph at lines 24--25
+Overfull \hbox (6.99944pt too wide) in paragraph at lines 24--25
 \OML/jkp/m/it/10 y\OMS/jkp/m/n/10 jj[]\OT1/jkp/m/n/10 (-20) ) = [](\OMS/jkp/m/n/10 ^^@[]jj\OML/jkp/m/it/10 x\OMS/jkp/m/n/10 jj[]\OT1/jkp/m/n/10 (-20) ) []([]\OML/jkp/m/it/10 x[]y\OT1/jkp/m/n/10 (-20) ) [](\OMS/jkp/m/n/10 ^^@[]jj\OML/jkp/m/it/10 y\OMS/jkp/m/n/10 jj[]\OT1/jkp/m/n/10 (-20) )$[]
  []
 
 ) (./section/discriminent.tex
-Underfull \hbox (badness 7133) in paragraph at lines 7--8
-[]\T1/jkp/m/n/10 (+20) Probabilistic Dis-cri-mi-na-ti-ve, mo-de-ling
- []
-
-
-Underfull \hbox (badness 6032) in paragraph at lines 54--56
-[]\T1/jkp/m/n/10 (+20) We use pri-or $[]\OML/jkp/m/it/10 w \OMS/jkp/m/n/10 ^^X N\OT1/jkp/m/n/10 (+20) (\OML/jkp/m/it/10 ^^V[]; []I[]\OT1/jkp/m/n/10 (+20) )$[] \T1/jkp/m/n/10 (+20) for $[]\OML/jkp/m/it/10 []$[]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 54--56
-\T1/jkp/m/n/10 (+20) suf-fi-cient-ly lar-ge (litt-le pri-or). Sin-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 54--56
-\T1/jkp/m/n/10 (+20) ce $[]\OML/jkp/m/it/10 p\OT1/jkp/m/n/10 (+20) (\OML/jkp/m/it/10 w \OMS/jkp/m/n/10 j \OML/jkp/m/it/10 X; Y\OT1/jkp/m/n/10 (+20) ) = \OML/jkp/m/it/10 p\OT1/jkp/m/n/10 (+20) (\OML/jkp/m/it/10 w; X; Y\OT1/jkp/m/n/10 (+20) )\OML/jkp/m/it/10 =p\OT1/jkp/m/n/10 (+20) (\OML/jkp/m/it/10 X; Y\OT1/jkp/m/n/10 (+20) ) \OMS/jkp/m/n/10 ^^Y
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 54--56
-\T1/jkp/m/n/10 (+20) is a Gaus-si-an dis-tri-bu-ti-on, we ha-ve
- []
-
-
-Underfull \hbox (badness 5607) in paragraph at lines 54--56
-[]\OML/jkp/m/it/10 p\OT1/jkp/m/n/10 (+20) (\OML/jkp/m/it/10 X; Y\OT1/jkp/m/n/10 (+20) ) \OMS/jkp/m/n/10 ^^Y \OML/jkp/m/it/10 e[]\OT1/jkp/m/n/10 (+20) (2\OML/jkp/m/it/10 ^^Y\OT1/jkp/m/n/10 (+20) )[]\OMS/jkp/m/n/10 j\OML/jkp/m/it/10 H[]\OT1/jkp/m/n/10 (+20) (\OML/jkp/m/it/10 w[]\OT1/jkp/m/n/10 (+20) )\OMS/jkp/m/n/10 j[]$[]\T1/jkp/m/n/10 (+20) . The-
- []
-
-LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/m/n' aliased to
-(Font)              `T1/SourceSansPro-TLF/regular/n' on input line 68.
-LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/regular/n' will be
-(Font)              scaled to size 9.0pt on input line 68.
-Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 68.
-[1
-
-
-
-
-{d:/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]) (./section/convex_opt.tex) (./section/SVM.tex
-Underfull \hbox (badness 5245) in paragraph at lines 11--12
-\T1/jkp/m/n/10 (+20) one so-lu-ti-on is to add slack va-ria-bles:
- []
-
-) (./section/ensemble.tex) (./section/generative_model.tex
-LaTeX Font Info:    Trying to load font information for TS1+jkp on input line 5.
+LaTeX Font Info:    Trying to load font information for TS1+jkp on input line 56.
  (d:/texlive/2020/texmf-dist/tex/latex/kpfonts/ts1jkp.fd
 File: ts1jkp.fd 2007/08/30 Fontinst v1.928 font definitions for TS1/jkp.
 )
@@ -1310,23 +1264,25 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `jkp' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-) (./section/nonparam-Bayes.tex) (./section/pac.tex) (./section/miscella.tex)
-Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 80.
- [2] (./main.aux) ) 
+) [1
+
+
+
+
+{d:/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./section/convex_opt.tex) (./section/SVM.tex) (./section/ensemble.tex) (./section/generative_model.tex) (./section/nonparam-Bayes.tex) (./section/pac.tex) (./section/appendix.tex) [2] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 24097 strings out of 479382
- 475376 string characters out of 5873307
- 877629 words of memory out of 5000000
- 40333 multiletter control sequences out of 15000+600000
- 543026 words of font info for 321 fonts, out of 8000000 for 9000
+ 23937 strings out of 479382
+ 470966 string characters out of 5873307
+ 877014 words of memory out of 5000000
+ 40187 multiletter control sequences out of 15000+600000
+ 527328 words of font info for 311 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,13n,111p,837b,1086s stack positions out of 5000i,500n,10000p,200000b,80000s
-{d:/texlive/2020/texmf-dist/fonts/enc/dvips/sourcesanspro/a_emkxm5.enc}{d:/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}{d:/texlive/2020/texmf-dist/fonts/enc/dvips/kpfonts/kpfonts-expert.enc}<d:/texlive/2020/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-Bold.pfb><d:/texlive/2020/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-It.pfb><d:/texlive/2020/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-Regular.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpbmi.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpex.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpmi.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpmia.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpmne.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpsy.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpsyb.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpsyc.pfb>
-Output written on main.pdf (2 pages, 282004 bytes).
+ 108i,15n,111p,797b,364s stack positions out of 5000i,500n,10000p,200000b,80000s
+{d:/texlive/2020/texmf-dist/fonts/enc/dvips/sourcesanspro/a_emkxm5.enc}{d:/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}{d:/texlive/2020/texmf-dist/fonts/enc/dvips/kpfonts/kpfonts-expert.enc}<d:/texlive/2020/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-Bold.pfb><d:/texlive/2020/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-It.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpbmi.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpex.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpmi.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpmia.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpmne.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpsy.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpsyb.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpsyc.pfb>
+Output written on main.pdf (2 pages, 226790 bytes).
 PDF statistics:
- 73 PDF objects out of 1000 (max. 8388607)
- 54 compressed objects within 1 object stream
+ 69 PDF objects out of 1000 (max. 8388607)
+ 51 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 69645 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 67597 words of extra memory for PDF output out of 74296 (max. 10000000)
 

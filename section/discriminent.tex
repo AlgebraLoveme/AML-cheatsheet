@@ -49,10 +49,13 @@ In most cases, the posterior is intractable. Use approximation of posterior inst
 Idea: approximate posterior near the MAP estimation with a Gaussian distribution.
 $p(w\mid X, Y) \propto p(w, X, Y) \propto \exp(-R(w))$, where $R(w) = -\log p(w, X, Y)$. Let $w^* = \argmin R(w)$ be the MAP estimation and Taylor-expand $R(w)$ at $w^*$: $R(w) \approx R(w^*) + \frac{1}{2}(w-w^*)^T H_R(w^*) (w-w^*)$. Therefore, $p(w\mid X,Y)\propto \exp(-R(w^*) -\frac{1}{2}(w-w^*)^T H_R(w^*) (w-w^*))$ and thus $(w\mid X,Y) \sim \normal(w^*, H_R^{-1}(w^*))$.
 
-\subsubsection*{Bayesian Information Criterion (BIC)}
+\subsubsection*{AIC \& BIC}
 
-We use prior $w\sim \normal(\mu_0, \alpha_0 I_d)$ for $\alpha_0$ sufficiently large (little prior). Since $p(w\mid X, Y) = p(w, X, Y) / p(X, Y) \approx \exp(-R(w^*) -\frac{1}{2}(w-w^*)^T H_R(w^*) (w-w^*)) / p(X, Y)$ is a Gaussian distribution, we have $p(X, Y)\approx e^{-R(w^*)}(2\pi)^{-d/2}|H_R(w^*)|^{-1/2}$. Therefore, $\log p(X,Y)\approx -R(w^*) -\frac{d}{2}\log(2\pi) - \frac{1}{2}\log |H_R(w^*)| = \log p(w^*) + \log p(X, Y\mid w^*)-\frac{d}{2}\log(2\pi) - \frac{1}{2}\log |H_R(w^*)|$. Further, notice that $H_R(w^*) = \frac{\partial^2}{\partial ww^T}(-\log p(w^*)-\log p(X, Y \mid w^*)) = -(\alpha_0 I_d)^{-1} - N \E_{x, y} (\frac{\partial^2}{\partial ww^T} \log p(x,y\mid w^*)) \approx N \mathbf{I}$, where $\mathbf{I}$ is the fisher information.
-Therefore, we define BIC = $-\log p(X, Y\mid w^*)+ \frac{d}{2}\log N$ and thus $\log p(X, Y) \approx \text{const} - \text{BIC}$. A lower BIC means (approximately) a larger evidence (log-likelihood of samples) and thus a better model.
+% We use prior $w\sim \normal(\mu_0, \alpha_0 I_d)$ for $\alpha_0$ sufficiently large (little prior). Since $p(w\mid X, Y) = p(w, X, Y) / p(X, Y) \approx \exp(-R(w^*) -\frac{1}{2}(w-w^*)^T H_R(w^*) (w-w^*)) / p(X, Y)$ is a Gaussian distribution, we have $p(X, Y)\approx e^{-R(w^*)}(2\pi)^{-d/2}|H_R(w^*)|^{-1/2}$. Therefore, $\log p(X,Y)\approx -R(w^*) -\frac{d}{2}\log(2\pi) - \frac{1}{2}\log |H_R(w^*)| = \log p(w^*) + \log p(X, Y\mid w^*)-\frac{d}{2}\log(2\pi) - \frac{1}{2}\log |H_R(w^*)|$. Further, notice that $H_R(w^*) = \frac{\partial^2}{\partial ww^T}(-\log p(w^*)-\log p(X, Y \mid w^*)) = -(\alpha_0 I_d)^{-1} - N \E_{x, y} (\frac{\partial^2}{\partial ww^T} \log p(x,y\mid w^*)) \approx N \mathbf{I}$, where $\mathbf{I}$ is the fisher information.
+\begin{itemize}
+    \item Define BIC = $k\log N -2\log \hat{L}$, where $k$ is \#parameters and $\hat{L}$ is the likelihood $p(x\mid w^*)$. A lower BIC means a better model.
+    \item Define AIC = $2k-2\log \hat{L}$. A lower AIC means a better model.
+\end{itemize}
 
 \subsection*{LDA by loss minimization}
 

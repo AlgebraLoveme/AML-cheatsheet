@@ -25,9 +25,11 @@ Goal: predict a structured output label, e.g., parsing trees.
 \inLongVersion{
 Difficulty of predicting structures:
 \begin{enumerate}
-    \item Compact representation of output space (cannot use one model for each class). Sol: use a score function and feature map $\hat{y}=\argmax_y w^T \Psi(x, y)$.
+    \item Compact representation of output space. Sol: use a score function and feature map $\hat{y}=\argmax_y w^T \Psi(x, y)$.
     \item Efficient prediction (cannot use brute-force search to find argmax). Sol: assume structures such as decomposable output spaces.
     \item Define prediction error (cannot use 0/1 errors). Sol: use a loss function $\Delta(y, \hat{y})$.
     \item Efficient training (cannot evaluate all constraints). Sol: iteratively add new constraints to the training.
 \end{enumerate}
 }
+
+$\min _{\mathbf{w}, \boldsymbol{\xi} \geq 0} \frac{1}{2} \mathbf{w}^{\top} \mathbf{w}+C \sum_{i=1}^{n} \xi_{i}$, s.t. $\mathbf{w}^{\top} \Psi\left(z_{i}, \mathbf{y}_{i}\right)-\max _{z \neq z_{i}}\left[\Delta\left(z, z_{i}\right)+\mathbf{w}^{\top} \Psi\left(z, \mathbf{y}_{i}\right)\right] \geq-\xi_{i}, \forall \mathbf{y}_{i} \in \mathcal{Y}$.

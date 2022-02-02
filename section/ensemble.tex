@@ -1,4 +1,12 @@
-\section{Ensemble: Adaboost}
+\section{Ensemble}
+
+\subsection*{Random Forest}
+
+Random feature selection induces regulation.
+
+\subsection*{Adaboost}
+
+Classifier weight $\alpha_t=\frac{1}{\text{weighted err}_t}-1$. Sample weight $w_{t+1}=\alpha_t w_t$ for mislabeled samples, o.w. unchanged.
 
 Adaboost has following properties:
 \begin{enumerate}
