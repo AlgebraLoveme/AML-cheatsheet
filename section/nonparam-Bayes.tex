@@ -1,29 +1,57 @@
-\section{Non-parametric Bayesian Method}
+\section{Non-parametric Bayesian Inference (BI)}
 
-\subsection*{Property of NIW}
+\subsection*{Exact Conjugate Prior of Multivariate Gaussian}
+Data: $x_i\sim \mathcal{N}(\mu,\Sigma)$ i.i.d.. Inverse Wishart: $\Sigma \sim \mathcal{W}^{-1}(S, v) \propto |\Sigma|^{(v+p+1)/2}$ $\exp( - \operatorname{Tr}( \Sigma^{-1} S)/2 )$. \\
+\textbf{Normal Inverse Wishart} as conjugate prior:\\ $p(\mu, \Sigma | m_0, k_0, v_0, S_0) = \mathcal{N}(\mu | m, \Sigma/k_0)\mathcal{W}^{-1}(\Sigma | S_0,v_0)$. 
 
-Normal Inverse Wishart distribution $\mu, \Sigma \sim NIW(\boldsymbol{m}_0, k_0, v_0, \boldsymbol{S}_0)$ is the conjugate prior of multivariate Gaussian distribution. It has the following properties:
-\begin{itemize}
-    \item $\mu \mid m_0, k_0, \Sigma \sim \normal(m_0, \frac{1}{k_0}\Sigma)$.
-    \item $\Sigma \mid v_0, S_0 \sim \mathcal{W}^{-1}(S_0, v_0)$, where $\mathcal{W}^{-1}$ is the inverse Wishart distribution.
-    \item Assume $X\sim \normal(\mu, \Sigma)$. Then $\mu, \Sigma\mid X \sim NIW(\boldsymbol{m}_p, k_p, v_p, \boldsymbol{S}_p)$, 
-    where $\boldsymbol{m}_{p}=\frac{k_{0}}{k_{0}+N} \boldsymbol{m}_{0}+\frac{N}{k_{0}+N} \overline{\boldsymbol{X}}$, $k_p=k_0+N$, $v_p=v_0+N$ and $\boldsymbol{S}_{p}=\boldsymbol{S}_{0}+\boldsymbol{S}_{\bar{X}}+k_{0} \boldsymbol{m}_{0} \boldsymbol{m}_{0}^{\top}-k_{p} \boldsymbol{m}_{p} \boldsymbol{m}_{p}^{\top}$ ($\boldsymbol{S}_{\bar{X}}$ is the sample covariance of $X$). That is, the posterior only depends on sample mean and covariance.
-\end{itemize}
+Update rule: $m_p = (k_0 m_0+N\bar{x})/(k_0+N)$, $k_p = k_0 + N$, $v_p =v_0 + N$, $S_p =S_0 + k_0 m_0 m_0^{\top} - k_p m_p m_p^{\top} + \sum (x_i-\bar{x})(x_i-\bar{x})^{\top}$. 
 
-\subsection*{Bayesian Inference for Multivariate Gaussian with Semi-Conjugate Prior}
 
-Goal: estimate $\mu, \Sigma$ given the NIW prior and $X$. The problem is $\mu, \Sigma\mid X$ is hard to sample from while we can easily sample from $\mu \mid \Sigma, X \sim \normal(m_p, \frac{1}{k_p}\Sigma)$ and $\Sigma \mid X\sim \sim \mathcal{W}^{-1}(S_p, v_p)$. Apply Gibbs sampling, we use $\mu_t \overset{\$}{\leftarrow} p(\mu \mid \Sigma_{t-1}, X)$ and $\Sigma_t \overset{\$} {\leftarrow} p(\Sigma \mid \mu_{t-1}, X)$.
+\subsection*{BI with Semi-Conjugate Prior}
+New prior: $\mu\sim \mathcal{N}(m_0,V_0)$, $\Sigma \sim \mathcal{W}^{-1}(S_0, v_0)$, then posterior $p(\mu,\Sigma | X)$ is intractable, but condition posterior is exact, $p(\mu | \Sigma, X) = \mathcal{N}(m_p,V_p)$, $V_p^{-1} = V_0^{-1} + N\Sigma^{-1}$, $V_p^{-1}m_p = V_0^{-1} m_0 + N\Sigma^{-1}\bar{x}$; $p(\Sigma | \mu, X) = \mathcal{W}^{-1}(S_p,v_p)$, $v_p = v_0 + N$, $S_p = S_0 +\sum x_ix_i^{\top} + N\mu\mu^{\top} - 2N\bar{x}\mu^{\top}$. 
+
+\textbf{Gibbs sampling}: random variable $p(z_1,\cdots, z_p)$ intractable, cyclically resample $z_i$ according to tractable conditional distribution $p(z_i | z_{/i})$ $n$ times, when $n\to \infty$, $(z_1,\cdots, z_p)\sim p(z_1,\cdots, z_p)$ 
+
+Finally, replace posterior with MC sampling: $\mathbb{E}_{\theta | X} f(x| \theta) \approx \sum f(x| \theta_i) / N$
 
 \subsection*{BI for Gaussian Mixture Model}
+Data model: latent $K$ class variable $z_i \sim \operatorname{Cat}(\pi)$, observed $x_i\sim \mathcal{N}(\mu_{z_i}, \Sigma_{z_i})$. Prior: $\mu_k \sim \mathcal{N}(m_0,V_0)$, $\Sigma_k \sim \mathcal{W}^{-1}(S_0, v_0)$, $\pi\sim \operatorname{Dir}(\alpha)\propto\prod_k^{K} p_{k}^{\alpha_k-1}$. Prior also intractable. 
 
-Setting: $\mu$ and $\Sigma$ follows the same prior, and we add a ``class index'' variable $z_i\sim \cat(\pi)$, where $\pi\sim \dir(\alpha)$. $\dir(\alpha)$ is the Dirichlet distribution which generates $\pi$ satisfying $\sum_{i=1}^k \pi_i=1$ and is the conjugate prior for categorical distribution. Use Gibbs sampling, we can estimate $\mu, \Sigma, z_i, \pi$. Note that here since \#classes is predetermined, $\alpha$ is actually not needed.
+\textbf{Goal} Gibbs sampling for BI, but to simplify conditional distribution.
+% \vspace{-0.4cm}
+\begin{center}
+    \includegraphics[width=0.3\columnwidth]{figures/d-sep.png}
+    \includegraphics[width=0.50\columnwidth]{figures/GMM.png}
+\end{center}
+% \vspace{-0.5cm}
 
-Concept here: d-separation, used to convert connectedness in the causal graph to conditional independence. If two variables are d-separated, then they are independent; o.w. not guaranteed to be dependent. Two variables are d-separated if all \emph{undirected} paths between them are inactive. If any triple ($x,y,z$) in a path is of the following inactive form, then the whole path is inactive: (1) $x - y - z$ is not of the form $x \rightarrow y \leftarrow z$ $\bigwedge$ $y$ is observed (conditioned); (2) $x - y - z$ is of the form $x \rightarrow y \leftarrow z$ $\bigwedge$ no descendants of $y$ ($y$ included) is observed.
+\textbf{d-seperation}: for verifying conditional independence. Given with observed variable set $C$, if any path from variable $A$ to $B$ is blocked on probability graph, then $A$ and $B$ are independent condition on $C$. By this thm: (1) $z_i$, $z_j$ (2) $\mu$, $\pi$  (3) $\Sigma$, $\pi$ all independent condition on other parameter. Sampling procedure: (1) $z^{(t)} \leftarrow p\left(\cdot | x, \mu^{(t-1)}, \Sigma^{(t-1)}\right)$, (2) $\mu^{(t)} \leftarrow p\left(\cdot | x, \Sigma^{(t-1)}, z^{(t)}\right)$, (3) $\Sigma^{(t)} \leftarrow p\left(\cdot | x, \mu^{(t)}, z^{(t)}\right)$, (4) $\pi^{(t)} \leftarrow p\left(\cdot | x, z^{(t)}\right)$
 
 \subsection*{BI for Non-Parametric GMM}
+\textbf{Goal}: sample from infinite categorical distri.
 
-GEM distribution is a special case of Dirichlet process which only takes one parameter (indicating no difference between classes). It gives a probability $\pi$ of a categorical distribution with infinite \#classes. We sample $\pi_i$ sequentially (stick-breaking): $\beta_i\sim \beta(1,\alpha)$, $\pi_1=\beta_1$ and $\pi_t=\prod_{j<t}(1-\beta_j)\beta_t$. We can use GEM distribution to adaptively learn the required \#clusters.
+\textbf{Dirichlet Process (DP)}: $\Theta$ parameter space, $H$ prior distri on $\Theta$, $A_1, \cdots, A_r$ arbitrary partition of $\Theta$. $G$ a categorical distribution over $\{A_i\}$ is  $G \sim \mathrm{DP}(\alpha, H)$ if $\left(G\left(A_{1}\right), \ldots, G\left(A_{r}\right)\right) \sim \operatorname{Dir}\left(\alpha H\left(A_{1}\right), \ldots, \alpha H\left(A_{r}\right)\right)$.
 
-Another approach is to directly model $z_i$ instead of drawing $z_i$ from $\cat(\pi)$ by Chinese Restaurant Process. The CRP($\alpha$) decides for every incoming sample $X_n$ which cluster $z_n$ it belongs to by $p(z_n=k)=\#\text{\{samples in cluster k\}}/(\alpha+n-1)$ and $p(z_n=k)=\alpha/(\alpha+n-1)$ for the left most cluster that contains no samples (a new cluster). $\alpha$ is the concentration parameter that defines how likely a sample belongs to an old cluster. In expectation, \#clusters = $O(\alpha\log N)$. The order of the samples incoming does not change the distribution of the partition.
+\textbf{Posterior}: $G | \{\theta_{i}\}_{i=1}^n \sim \operatorname{DP}\left(\alpha+n, \frac{\alpha H + \sum_{i=1}^{n} \delta_{\theta_{i}}}{\alpha+n}\right)$
 
-Note that $z_n$ in CRP only depends on $z_{j<n}$. Therefore, we can use collapsed Gibbs sampling for $z^t$: $z^t \sim p(z\mid z^{t-1}, X)$. 
+\textbf{Condition on $\theta$, Margin over $G$}: $\theta_{n+1} \mid \theta_{1}, \ldots, \theta_{n} \sim \frac{1}{\alpha+n}\left(\alpha H+\sum_{i=1}^{n} \delta_{\theta_{i}}\right)$, Leads to CRP
+
+\subsection*{Three Methods of Sampling from DP}
+
+In $K\to\infty$ GMM, $\theta$ in DP is $z$, $G$ is $\pi$. 
+
+\textbf{(1) Chinese Restaurant Process (CRP)}, sample $z$, marginalize over $\pi$: \\
+$p(z_n = k| \theta_{i < n}) = 
+\begin{cases}
+    n_k / (\alpha + n - 1) \text{, existing }k \\
+    \alpha / (\alpha + n - 1) \text{, new }k 
+\end{cases}
+$
+
+\textbf{(2) Stick-breaking Construction} samples $\pi$: $\beta_{k} \sim \operatorname{Beta}(1, \alpha)$, $\theta_{k}^{*} \sim H$, $\pi_{k}=\beta_{k} \prod_{l=1}^{k-1}\left(1-\beta_{l}\right)$
+
+\textbf{(3)} Marginalize over $\mu, \Sigma$ when sampling $z$ (if intractable), less variance (Rao-Blackwall).
+
+\textbf{Exchangeability}: $p(\{\theta_i\}) = \prod_{n=1}^N p(\theta_n | \{\theta_{i<n}\})$ unchanged after permuting sampling order.
+
+\textbf{DeFinetti’s Thm} any exchangeable distri is a mixture model $P\left(\{\theta_{i}\}\right)=\int \prod_{i=1}^{n} G\left(\theta_{i}\right) d P(G)$
