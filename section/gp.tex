@@ -1,11 +1,11 @@
 \section{BLR and GP}
 
 \subsection*{Bayesian Linear Regression}
-Model $Y=X\beta+\epsilon$, $\epsilon\sim \normal(0, \sigma^2)$. Prior $\beta \sim \normal(0, \Lambda^{-1})$. Posterior $\beta \mid X, Y \sim \normal(\mu_\beta, \Sigma_\beta)$, where $\mu_\beta = (X^T X+\sigma^2\Lambda)^{-1}X^T Y$ and $\Sigma_\beta =  (\sigma^{-2}X^T X+\Lambda)^{-1}$.  
+\begin{scriptsize}$Y=X\beta+\epsilon$\textasciitilde$\normal(0, \sigma^2)$. Prior $\beta $\textasciitilde$ \normal(0, \Lambda^{-1})$. Posterior $\beta | X, Y $\\\textasciitilde$ \normal(\mu_\beta, \Sigma_\beta)$, $\Sigma_\beta =  (\sigma^{-2}X^T X+\Lambda)^{-1}$, $\mu_\beta = \sigma^2\Sigma_{\beta}X^T Y$. \end{scriptsize}
 
 % MAP estimation of this prior (i.e., $\mu_\beta$) is equivalent to Ridge regression given $\Lambda = \lambda I$ and $\sigma=1$.
 
-% When $\Lambda=\lambda I$, under the prior, $Y\sim \normal(0, \frac{1}{\lambda}X^T X+\sigma^2 I)$. Therefore, $\cov(y_i, y_j) = \frac{1}{\lambda}x_i^T x_j$. It means a prior that closer samples is more similar, i.e., $\cov(y_i, y_j)$ is large when $x_i^T x_j$ is large. The kernel $X^T \Lambda^{-1} X$ is thus called linear kernel. When a general kernel is used, Gaussian Process appears.
+% When $\Lambda=\lambda I$, under the prior, $Y$\textasciitilde$ \normal(0, \frac{1}{\lambda}X^T X+\sigma^2 I)$. Therefore, $\cov(y_i, y_j) = \frac{1}{\lambda}x_i^T x_j$. It means a prior that closer samples is more similar, i.e., $\cov(y_i, y_j)$ is large when $x_i^T x_j$ is large. The kernel $X^T \Lambda^{-1} X$ is thus called linear kernel. When a general kernel is used, Gaussian Process appears.
 
 \subsection*{Gaussian Process}
 $Y = \left(\begin{matrix} Y_0 \\ Y_1 \end{matrix}\right)$ is the combination of observed and prediction value. Assume a Gaussian prior of $\mathcal{N}(0, K + \sigma^2 I)$, where $K_{ij}=k(x_i,x_j)$ is kernel. GP regression is the conditional/Posterior distribution on $Y_0$, $\mathbb{E} [Y_1|Y_0] = K_{1 0}(\sigma^{2} I_{0}+K_{00})^{-1}Y_0$, $\mathrm{Cov}[Y_1] = \sigma^{2}I_{1} + K_{11} - K_{10} (\sigma^2  I_{0} + K_{00})^{-1} K_{01}$. Bayesian LR is a special case of GP with linear kernel $k(x,y) = x^{\top}\Lambda^{-1}y$.

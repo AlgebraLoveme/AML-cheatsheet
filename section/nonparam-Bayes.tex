@@ -1,7 +1,7 @@
 \section{Non-parametric Bayesian Inference (BI)}
 
 \subsection*{Exact Conjugate Prior of Multivariate Gaussian}
-Data: $x_i\sim \mathcal{N}(\mu,\Sigma)$ i.i.d.. Inverse Wishart: $\Sigma \sim \mathcal{W}^{-1}(S, v) \propto |\Sigma|^{(v+p+1)/2}$ $\exp( - \operatorname{Tr}( \Sigma^{-1} S)/2 )$. \\
+Data: $x_i$\textasciitilde$ \mathcal{N}(\mu,\Sigma)$ i.i.d.. Inverse Wishart: $\Sigma $\textasciitilde$ \mathcal{W}^{-1}(S, v) \propto |\Sigma|^{(v+p+1)/2}$ $\exp( - \operatorname{Tr}( \Sigma^{-1} S)/2 )$. \\
 \textbf{Normal Inverse Wishart} as conjugate prior:\\ $p(\mu, \Sigma | m_0, k_0, v_0, S_0) = \mathcal{N}(\mu | m, \Sigma/k_0)\mathcal{W}^{-1}(\Sigma | S_0,v_0)$. 
 
 Update rule: \begin{footnotesize}
@@ -10,16 +10,16 @@ Update rule: \begin{footnotesize}
 
 
 \subsection*{BI with Semi-Conjugate Prior}
-New prior: $\mu\sim \mathcal{N}(m_0,V_0)$, $\Sigma \sim \mathcal{W}^{-1}(S_0, v_0)$, then posterior $p(\mu,\Sigma | X)$ is intractable, but condition posterior is exact, \begin{footnotesize}
+New prior: $\mu$\textasciitilde$ \mathcal{N}(m_0,V_0)$, $\Sigma $\textasciitilde$ \mathcal{W}^{-1}(S_0, v_0)$, then posterior $p(\mu,\Sigma | X)$ is intractable, but condition posterior is exact, \begin{footnotesize}
     $p(\mu | \Sigma, X) = \mathcal{N}(m_p,V_p)$, $V_p^{-1} = V_0^{-1} + N\Sigma^{-1}$, $V_p^{-1}m_p = V_0^{-1} m_0 + N\Sigma^{-1}\bar{x}$; $p(\Sigma | \mu, X) = \mathcal{W}^{-1}(S_p,v_p)$, $v_p = v_0 + N$, $S_p = S_0 +\sum x_ix_i^{\top} + N\mu\mu^{\top} - 2N\bar{x}\mu^{\top}$. 
 \end{footnotesize}
 
-\textbf{Gibbs sampling}: random variable $p(z_1,\cdots, z_p)$ intractable, cyclically resample $z_i$ according to tractable conditional distribution $p(z_i | z_{/i})$ $n$ times, when $n\to \infty$, $(z_1,\cdots, z_p)\sim p(z_1,\cdots, z_p)$ 
+\textbf{Gibbs sampling}: random variable $p(z_1,\cdots, z_p)$ intractable, cyclically resample $z_i$ according to tractable conditional distribution $p(z_i | z_{/i})$ $n$ times, when $n\to \infty$, $(z_1,\cdots, z_p)$\textasciitilde$ p(z_1,\cdots, z_p)$ 
 
 Finally, replace posterior with MC sampling: $\mathbb{E}_{\theta | X} f(x| \theta) \approx \sum f(x| \theta_i) / N$
 
 \subsection*{BI for Gaussian Mixture Model}
-Data model: latent $K$ class variable $z_i \sim \operatorname{Cat}(\pi)$, observed $x_i\sim \mathcal{N}(\mu_{z_i}, \Sigma_{z_i})$. Prior: $\mu_k \sim \mathcal{N}(m_0,V_0)$, $\Sigma_k \sim \mathcal{W}^{-1}(S_0, v_0)$, $\pi\sim \operatorname{Dir}(\alpha)\propto\prod_k^{K} p_{k}^{\alpha_k-1}$. Prior also intractable. 
+Data model: latent $K$ class variable $z_i $\textasciitilde$ \operatorname{Cat}(\pi)$, observed $x_i$\textasciitilde$ \mathcal{N}(\mu_{z_i}, \Sigma_{z_i})$. Prior: $\mu_k $\textasciitilde$ \mathcal{N}(m_0,V_0)$, $\Sigma_k $\textasciitilde$ \mathcal{W}^{-1}(S_0, v_0)$, $\pi$\textasciitilde$ \operatorname{Dir}(\alpha)\propto\prod_k^{K} p_{k}^{\alpha_k-1}$. Prior also intractable. 
 
 \textbf{Goal} Gibbs sampling for BI, but to simplify conditional distribution.
 % \vspace{-0.4cm}
@@ -36,11 +36,11 @@ Data model: latent $K$ class variable $z_i \sim \operatorname{Cat}(\pi)$, observ
 \subsection*{BI for Non-Parametric GMM}
 \textbf{Goal}: sample from infinite categorical distri.
 
-\textbf{Dirichlet Process (DP)}: $\Theta$ parameter space, $H$ prior distri on $\Theta$, $A_1, \cdots, A_r$ arbitrary partition of $\Theta$. $G$ a categorical distribution over $\{A_i\}$ is  $G \sim \mathrm{DP}(\alpha, H)$ if $\left(G\left(A_{1}\right), \ldots, G\left(A_{r}\right)\right) \sim \operatorname{Dir}\left(\alpha H\left(A_{1}\right), \ldots, \alpha H\left(A_{r}\right)\right)$.
+\textbf{Dirichlet Process (DP)}: $\Theta$ parameter space, $H$ prior distri on $\Theta$, $A_1, \cdots, A_r$ arbitrary partition of $\Theta$. $G$ a categorical distribution over $\{A_i\}$ is  $G $\textasciitilde$ \mathrm{DP}(\alpha, H)$ if $\left(G\left(A_{1}\right), \ldots, G\left(A_{r}\right)\right) $\textasciitilde$ \operatorname{Dir}\left(\alpha H\left(A_{1}\right), \ldots, \alpha H\left(A_{r}\right)\right)$.
 
-\textbf{Posterior}: $G | \{\theta_{i}\}_{i=1}^n \sim \operatorname{DP}\left(\alpha+n, \frac{\alpha H + \sum_{i=1}^{n} \delta_{\theta_{i}}}{\alpha+n}\right)$
+\textbf{Posterior}: $G | \{\theta_{i}\}_{i=1}^n $\textasciitilde$ \operatorname{DP}\left(\alpha+n, \frac{\alpha H + \sum_{i=1}^{n} \delta_{\theta_{i}}}{\alpha+n}\right)$
 
-\textbf{Condition on $\theta$, Margin over $G$}: $\theta_{n+1} \mid \theta_{1}, \ldots, \theta_{n} \sim \frac{1}{\alpha+n}\left(\alpha H+\sum_{i=1}^{n} \delta_{\theta_{i}}\right)$, Leads to CRP
+\textbf{Condition on $\theta$, Margin over $G$}: $\theta_{n+1} \mid \theta_{1}, \ldots, \theta_{n} $\textasciitilde$ \frac{1}{\alpha+n}\left(\alpha H+\sum_{i=1}^{n} \delta_{\theta_{i}}\right)$, Leads to CRP
 
 \subsection*{Three Methods of Sampling from DP}
 
@@ -54,9 +54,9 @@ $p(z_n = k| \theta_{i < n}) =
 \end{cases}
 $
 
-\textbf{Expect \# of Class} $\sum_{i=1}^{n} \frac{\alpha}{\alpha+i-1} \simeq \alpha \log \left(1+\frac{n}{\alpha}\right)$
+\textbf{Expect \# of Class} $\sum_{i=1}^{n} \frac{\alpha}{\alpha+i-1} $\textasciitilde$eq \alpha \log \left(1+\frac{n}{\alpha}\right)$
 
-\textbf{(2) Stick-breaking Construction} samples $\pi$: $\beta_{k} \sim \operatorname{Beta}(1, \alpha)$, $\theta_{k}^{*} \sim H$, $\pi_{k}=\beta_{k} \prod_{l=1}^{k-1}\left(1-\beta_{l}\right)$
+\textbf{(2) Stick-breaking Construction} samples $\pi$: $\beta_{k} $\textasciitilde$ \operatorname{Beta}(1, \alpha)$, $\theta_{k}^{*} $\textasciitilde$ H$, $\pi_{k}=\beta_{k} \prod_{l=1}^{k-1}\left(1-\beta_{l}\right)$
 
 \textbf{(3)} Marginalize over $\mu, \Sigma$ when sampling $z$ (if intractable), less variance (Rao-Blackwall).
 
