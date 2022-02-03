@@ -1,7 +1,7 @@
 \section{PAC Learning}
 
 \begin{itemize}[itemsep=0pt,topsep=0pt, leftmargin=2pt, itemindent=5pt, labelwidth=5pt]
-    \item A learning algorithm $\mathcal{A}$ can learn $c\in C$ if there is a poly(.,.), s.t. for (1) any distribution $\mathcal{D}$ on $\mathcal{X}$ and (2) $\forall \epsilon\in [0, 1/2],\delta\in [0, 1/2]$, $\mathcal{A}$ outputs $\hat{c}\in \mathcal{H}$ given a sample of size at least poly($\frac{1}{\epsilon}$, $\frac{1}{\delta}$, size($c$)) such that $P(\mathcal{R}(\hat{c})-\inf_{c\in C}\mathcal{R}(c)\le\epsilon) \ge 1-\delta$.
+    \item Algorithm $\mathcal{A}$ can learn $c\in C$ if there is a poly(.,.), s.t. for (1) any distri $\mathcal{D}$ on $\mathcal{X}$ and (2) $\forall \epsilon\in [0, 1/2],\delta\in [0, 1/2]$, $\mathcal{A}$ outputs $\hat{c}\in \mathcal{H}$ given a sample of size at least poly($\frac{1}{\epsilon}$, $\frac{1}{\delta}$, size($c$)) s.t. $P(\mathcal{R}(\hat{c})-\inf_{c\in C}\mathcal{R}(c)\le\epsilon) \ge 1-\delta$.
     \item $\mathcal{A}$ is called an efficient PAC algorithm if it runs in polynomial of $\frac{1}{\epsilon}$ and $\frac{1}{\delta}$.
     \item $\mathcal{C}$ is (efficiently) PAC-learnable from $\mathcal{H}$ if there is an algorithm $\mathcal{A}$ that (efficiently) learns $C$ from $\mathcal{H}$.
     \item VC inequality\begin{scriptsize}$\mathcal{R}(\hat{c}_{n}^{\star})-\mathcal{R}(c^{\star}) \leq 2 \sup _{c \in \mathcal{C}}|\hat{\mathcal{R}}_{n}(c)-\mathcal{R}(c)|$\end{scriptsize}.
@@ -11,6 +11,4 @@
     \item VC dim: $\max n$ s.t. $s(\mathcal{A}, n)=2^{n}$. Growth function(shattering num) $s(\mathcal{A}, n)$ is the maximum number of concept class a hypothesis space can express. $s(\mathcal{A}, n) \leq \sum_{i=0}^{V_{\mathcal{A}}}(\begin{array}{l}n \\i\end{array})$
     \item $|\mathcal{C}|<\infty$, infeasible, $\mathbf{P}(\mathcal{R}(\hat{c}_{n}^{*})-\inf _{c \in \mathcal{C}} \mathcal{R}(c)>\epsilon) \leq 2|\mathcal{C}| \exp (-2{n \epsilon^{2}})$  is PAC-learnable.
           Proof $\mathcal{D}^{m}(\{S: \exists h \in \mathcal{H},|L_{S}(h)$ $-L_{\mathcal{D}}(h)|>\epsilon\})\leq \sum_{h \in \mathcal{H}} \mathcal{D}^{m}(\{S:|L_{S}(h)-L_{\mathcal{D}}(h)|>\epsilon\})$, Hoeffiding $\mathbb{P}[|L_{S}(h)-L_{D}(h)|>\epsilon] \leq 2 \exp (-2 m \epsilon^{2})$.
-
-    \item $\mathcal{C}$ with $\mathrm{dim}_{VC} = d<\infty$ is PAC-learnable, $\mathbf{P}(\mathcal{R}(\hat{c}_{n}^{*})-\inf _{c \in \mathcal{C}} \mathcal{R}(c)>\epsilon) \leq 9 n^{d} \exp (-\frac{n \epsilon^{2}}{32})$
 \end{itemize}

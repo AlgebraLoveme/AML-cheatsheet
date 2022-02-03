@@ -8,17 +8,17 @@
 
 \textbf{ELBO for VAE training} loss $l=\sum \ln \left(p_{\theta}\left(x_{i}\right)\right)$
 \vspace{-0.4cm}
-\begin{scriptsize}
+\begin{footnotesize}
     \begin{equation*}
         \begin{aligned}
-             & \ln \left(p_{\theta}\left(x_{i}\right)\right)=\underset{Z \sim q_{\phi}\left(z \mid x_{i}\right)}{\mathbb{E}}\left[\ln p_{\theta}\left(x_{i}\right)\right] = \mathbb{E}_{Z}\left[\ln \frac{p_{\theta}\left(x_{i} \mid z\right) p_{\theta}(z)}{p_{\theta}\left(z \mid x_{i}\right)}\right]                               \\
-             & = \mathbb{E}_{Z}\left[\ln \frac{p_{\theta}\left(x_{i} \mid z\right) p_{\theta}(z)}{p_{\theta}\left(z \mid x_{i}\right)} \frac{q_{\phi}\left(z \mid x_{i}\right)}{q_{\phi}\left(z \mid x_{i}\right)}\right]                                          \\
-             & = \mathbb{E}_{Z}\left[\ln p_{\theta}\left(x_{i} \mid z\right)\right] - \mathbb{E}_{Z}\left[\ln \frac{q_{\phi}\left(z \mid x_{i}\right)}{p_{\theta}(z)}\right]+\mathbb{E}_{Z}\left[\ln \frac{q_{\phi}\left(z \mid x_{i}\right)}{p_{\theta}\left(z \mid x_{i}\right)}\right]                                                                                                                 \\
-             & = \underbrace{\mathbb{E}_{Z}\left[\ln p_{\theta}\left(x_{i} \mid z\right)\right]-\mathrm{KL}\left(q_{\phi}\left(z \mid x_{i}\right) \| p_{\theta}(z)\right)}_{\text{ELBO }\mathcal{L}\left(x_{i}, \theta, \phi\right)} \\
+             & \ln \left(p_{\theta}\left(x_{i}\right)\right)=\underset{Z \sim q_{\phi}\left(z \mid x_{i}\right)}{\mathbb{E}}\left[\ln p_{\theta}\left(x_{i}\right)\right] = \mathbb{E}_{Z}\left[\ln \right. \\ 
+             &\left.\frac{p_{\theta}\left(x_{i} \mid z\right) p_{\theta}(z)}{p_{\theta}\left(z \mid x_{i}\right)}\right] =  \mathbb{E}_{Z}\left[\ln  \frac{p_{\theta}\left(x_{i} \mid z\right) p_{\theta}(z)}{p_{\theta}\left(z \mid x_{i}\right)} \frac{q_{\phi}\left(z \mid x_{i}\right)}{q_{\phi}\left(z \mid x_{i}\right)}\right]                                          \\
+             & = \mathbb{E}_{Z}\left[\ln p_{\theta}\left(x_{i} \mid z\right)\right] - \mathbb{E}_{Z}\left[\ln \frac{q_{\phi}\left(z \mid x_{i}\right)}{p_{\theta}(z)}\right]+\mathbb{E}_{Z}\left[\ln\right. \\ 
+             &\left. \frac{q_{\phi}\left(z \mid x_{i}\right)}{p_{\theta}\left(z \mid x_{i}\right)}\right]   = \underbrace{\mathbb{E}_{Z}\left[\ln p_{\theta}\left(x_{i} \mid z\right)\right]-\mathrm{KL}\left(q_{\phi}\left(z \mid x_{i}\right) \| p_{\theta}(z)\right)}_{\text{ELBO }\mathcal{L}\left(x_{i}, \theta, \phi\right)} \\
              &+ \mathrm{KL}\left(q_{\phi}\left(z \mid x_{i}\right) \| p_{\theta}\left(z \mid x_{i}\right)\right) \geq \text{ELBO}.
         \end{aligned}
     \end{equation*}
-\end{scriptsize}
+\end{footnotesize}
 \vspace{-0.4cm}
 
 \textbf{Generative Adversarial Network}: Generator $G$ and Discriminator $D$. Optimize $\min _{G} \max _{D} V(D, G)$ where $V(D, G) = \mathbb{E}_{x \sim p_{\text {data }}(x)}[\ln D(x)]+\mathbb{E}_{z \sim p_{z}(z)}[\ln (1-D(G(z)))]$
@@ -36,10 +36,11 @@ Proof:
 \begin{scriptsize}
     $\mathbb{E}[(\theta^{(t+1)}-\theta^{*})^{2}]=\mathbb{E}[((\theta^{(t)}-\theta^{*})-\eta(t) l(\theta^{(t)})-\eta(t) \gamma^{(t)})^2]$.
 \end{scriptsize}
-$\gamma^{(t)}$ independent with $\theta^{(t)}$, $\ell(\theta^{(t)})$, so
-\begin{scriptsize}
-    $\text{LHS}=\mathbb{E}[(\theta^{*}-\theta^{(t)})^{2}]-2 \eta(t) \mathbb{E}[\ell(\theta^{(t)})(\theta^{*}-\theta^{(t)})]+\eta^{2}(t)(\mathbb{E}[\ell^{2}(\theta^{(t)})]+\mathbb{E}[\gamma^{2}(t)]) \leq \mathbb{E}[(\theta^{*}-\theta^{(0)})^{2}]-2\sum_{i\leq t} \eta(i) \mathbb{E}[\ell(\theta^{(i)})(\theta^{*}-\theta^{(i)})]+ \sum_{i \leq t} \eta^{2}(i)\left(b^{2}+\sigma^{2}\right)$
+$\gamma^{(t)}$ independent with $\theta^{(t)}$, $\ell(\theta^{(t)})$,\\
+so
+\begin{footnotesize}
+    $\text{LHS}=\mathbb{E}[(\theta^{*}-\theta^{(t)})^{2}]-2 \eta(t) \mathbb{E}[\ell(\theta^{(t)})(\theta^{*}-\theta^{(t)})]+\eta^{2}(t)(\mathbb{E}[\ell^{2}(\theta^{(t)})]+\mathbb{E}[\gamma^{2}(t)]) \leq \mathbb{E}[(\theta^{*}-\theta^{(0)})^{2}]-2\sum_{i\leq t} \eta(i) \mathbb{E}[\ell(\theta^{(i)})(\theta^{*}-\theta^{(i)})]+ \sum_{i \leq t} \eta^{2}(i)\left(b^{2}+\sigma^{2}\right)$ \\
     Since
-    $0\leq \mathbb{E}[(\theta^{*}-\theta^{(t+1)})^{2}] \nless-\infty$, $0 =  \underset{i \rightarrow \infty}{\lim} \mathbb{E}[\ell(\theta^{(i)})(\theta^{*}-\theta^{(i)})]= \underset{i \rightarrow \infty}{\lim}\mathbb{P}(\theta^{*}=\theta^{(i)}) \mathbb{E}[\ell(\theta^{(i)})(\theta^{*}-\theta^{(i)}) | \theta^{*}=\theta^{(i)}]+ \mathbb{P}(\theta^{*} \neq \theta^{(i)}) \mathbb{E}[\ell(\theta^{(i)})(\theta^{*}-\theta^{(i)}) | \theta^{*} \neq \theta^{(i)}]$, $\underset{i \rightarrow \infty}{\lim} \mathbb{P}\left(\theta^{*} \neq \theta^{(i)}\right)=0$
-\end{scriptsize}
+    $0\leq \mathbb{E}[(\theta^{*}-\theta^{(t+1)})^{2}] \nless-\infty$, $0 =  \underset{i \rightarrow \infty}{\lim} \mathbb{E}[\ell(\theta^{(i)})(\theta^{*}-\theta^{(i)})]= \underset{i \rightarrow \infty}{\lim}\mathbb{P}(\theta^{*}=\theta^{(i)}) \mathbb{E}[\ell(\theta^{(i)})$\\$(\theta^{*}-\theta^{(i)}) | \theta^{*}=\theta^{(i)}]+ \mathbb{P}(\theta^{*} \neq \theta^{(i)}) \mathbb{E}[\ell(\theta^{(i)})(\theta^{*}-\theta^{(i)}) | \theta^{*} \neq \theta^{(i)}]$, $\underset{i \rightarrow \infty}{\lim} \mathbb{P}\left(\theta^{*} \neq \theta^{(i)}\right)=0$
+\end{footnotesize}
 
