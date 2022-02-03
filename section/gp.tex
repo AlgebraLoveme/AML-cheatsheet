@@ -1,6 +1,4 @@
 \section{BLR and GP}
-\textbf{Conditional} $\E (y_2 \mid y_1) = \mu_2+\Sigma_{21}\Sigma_{11}^{-1} (y_1-\mu_1)$, $\cov(y_2\mid y_1) = \Sigma_{22} - \Sigma_{21}\Sigma_{11}^{-1}\Sigma_{12}$. \\
-\textbf{Marginal} $\E (y_2 ) = \mu_2$, $\cov(y_2) = \Sigma_{22}$
 
 \subsection*{Bayesian Linear Regression}
 Model $Y=X\beta+\epsilon$, $\epsilon\sim \normal(0, \sigma^2)$. Prior $\beta \sim \normal(0, \Lambda^{-1})$. Posterior $\beta \mid X, Y \sim \normal(\mu_\beta, \Sigma_\beta)$, where $\mu_\beta = (X^T X+\sigma^2\Lambda)^{-1}X^T Y$ and $\Sigma_\beta =  (\sigma^{-2}X^T X+\Lambda)^{-1}$.  

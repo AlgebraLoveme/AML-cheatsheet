@@ -1,17 +1,24 @@
 \section{Appendix}
-
+\begin{scriptsize}
+    (1) $\partial_x (AB) = A\partial_x B+(\partial_x A)B$, 
+    (2) $\partial_x A^{-1} = -A^{-1}(\partial_x A)A^{-1}$, 
+    (3) $\partial_x\ln\det A = \mathrm{Tr}\left(A^{-1}\partial_x A\right)$,
+    
+    Define $(\partial_A f)_{ij}:=\partial_{a_{ji}} f$, then
+    (4) $\partial_A\mathrm{Tr}(BA) = \partial_A\mathrm{Tr}(AB) = B$,
+    (5) $\partial_A\ln\det A=A^{-1}$,
+    (6) $\partial_A\mathrm{Tr}(ABA^{\top}) = (B+B^{\top})A^{\top}$,
+    
+    $\normal(\mu,\Sigma)$=$(2\pi)^{-d/2}|\Sigma|^{-1/2}e^{-(x-\mu)^T \Sigma^{-1} (x-\mu)/2}$, 
+    Conditional $\mathbb{E} [y_2 | y_1] = \mu_2+\Sigma_{21}\Sigma_{11}^{-1} (y_1-\mu_1)$, $\operatorname{Cov}[y_2\mid y_1] = \Sigma_{22} - \Sigma_{21}\Sigma_{11}^{-1}\Sigma_{12}$. 
+    Marginal $\mathbb{E} (y_2 ) = \mu_2$, $\operatorname{Cov}[y_2] = \Sigma_{22}$
+    
+    $(A + U C^{-1} V)^{-1} = A^{-1} - A^{-1}U(C+VA^{-1}U)^{-1}V A^{-1}$.
+\end{scriptsize}
 % $\frac{\partial}{\partial \Sigma} \log|\Sigma| = \Sigma^{-T}$.
 
 % $\frac{\partial \overrightarrow{u}^T \overrightarrow{v}}{\partial x} = \frac{\partial \overrightarrow{u}}{\partial x} \overrightarrow{v} +\frac{\partial \overrightarrow{v}}{\partial x} \overrightarrow{u}$.
 
 % $\frac{\partial A\overrightarrow{u}}{\partial x} = \frac{\partial\overrightarrow{u}}{\partial x} A^T$.
-$\frac{\partial AB}{\partial x}=A\frac{\partial B}{\partial x}+\frac{\partial A}{\partial x}B$, 
-$\frac{\partial A^{-1}}{\partial x}=-A^{-1}\frac{\partial A}{\partial x}A^{-1}$, 
-$\frac{\partial\ln\det A}{\partial x} = \mathrm{Tr}\left(A^{-1}\frac{\partial A}{\partial x}\right)$,
-$\left\{\frac{\partial f}{\partial A}\right\}_{ij}:=\frac{\partial f}{\partial a_{ji}}$,
-$\frac{\partial\mathrm{Tr}(BA)}{\partial A} = \frac{\partial\mathrm{Tr}(AB)}{\partial A}=B$,
-$\frac{\partial\ln\det A}{\partial A}=A^{-1}$,
-$\frac{\partial\mathrm{Tr}(ABA^{\top})}{\partial A}=(B+B^{\top})A^{\top}$,
-$\normal(\mu,\Sigma)$: $(2\pi)^{-d/2}|\Sigma|^{-1/2}\exp(-\frac{1}{2}(x-\mu)^T \Sigma^{-1} (x-\mu))$,
-$(A + U C^{-1} V)^{-1} = A^{-1} - A^{-1}U(C+VA^{-1}U)^{-1}V A^{-1}$.
+
 
