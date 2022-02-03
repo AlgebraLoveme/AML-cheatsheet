@@ -1,7 +1,10 @@
 \section{BLR and GP}
 
 \subsection*{Bayesian Linear Regression}
-\begin{scriptsize}$Y=X\beta+\epsilon$\textasciitilde$\normal(0, \sigma^2)$. Prior $\beta $\textasciitilde$ \normal(0, \Lambda^{-1})$. Posterior $\beta | X, Y $\\\textasciitilde$ \normal(\mu_\beta, \Sigma_\beta)$, $\Sigma_\beta =  (\sigma^{-2}X^T X+\Lambda)^{-1}$, $\mu_\beta = \sigma^2\Sigma_{\beta}X^T Y$. \end{scriptsize}
+% \begin{scriptsize}
+    $
+    Y=X\beta+\epsilon \sim \normal(0, \sigma^2)$. Prior $\beta \sim \normal(0, \Lambda^{-1})$. Posterior $\beta | X, Y \sim\normal(\mu_\beta, \Sigma_\beta)$, $\Sigma_\beta =  (\sigma^{-2}X^T X+\Lambda)^{-1}$, $\mu_\beta = \sigma^2\Sigma_{\beta}X^T Y$. 
+% \end{scriptsize}
 
 % MAP estimation of this prior (i.e., $\mu_\beta$) is equivalent to Ridge regression given $\Lambda = \lambda I$ and $\sigma=1$.
 

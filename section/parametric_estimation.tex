@@ -8,7 +8,7 @@
 
 Cramer-Rao lower bound (CRLB): for any \emph{unbiased} $\hat{\theta}$ of $\theta_0$, $\E (\hat{\theta}-\theta_0)^2 \ge 1/I_n(\theta_0)$
 
-Proof: $\text{Cov}[s_\theta, \hat{\theta}] = \mathbb{E}[s_\theta, \hat{\theta}] = \partial_\theta  \mathbb{E}[\hat{\theta}] = \partial_\theta \theta = 1$. Cauchy-Schwarz $\text{Cov}^2[s_\theta, \hat{\theta}]\leq \text{Var}[s_\theta] \text{Var}[\hat{\theta}] = I_n(\theta) \E (\hat{\theta}-\theta_0)^2$ QED.
+Proof: $\text{Cov}[s_\theta, \hat{\theta}] = \mathbb{E}[s_\theta \cdot \hat{\theta}] = \partial_\theta  \mathbb{E}[\hat{\theta}] = \partial_\theta \theta = 1$. Cauchy-Schwarz $\text{Cov}^2[s_\theta, \hat{\theta}]\leq \text{Var}[s_\theta] \text{Var}[\hat{\theta}] = I_n(\theta) \E (\hat{\theta}-\theta_0)^2$ QED.
 % define $\Lambda = \frac{\partial \log P(X;\theta)}{\partial \theta}$. Cauchy-Schwarz says $\cov^2(\Lambda, \hat{\theta})\le \var(\Lambda)\var(\hat{\theta}) = \E(\Lambda^2) \var(\hat{\theta})$ because $\E \Lambda=0$. Note that $\cov(\Lambda, \hat{\theta}) = \E(\Lambda\hat{\theta}) = \int_X \hat{\theta}(x) \frac{\partial}{\partial \theta}f(x;\theta) dx = \frac{\partial}{\partial \theta} \int_X \hat{\theta}(x) f(x;\theta) dx = \frac{\partial}{\partial \theta} \E \hat{\theta} = 1$. Therefore, $\var(\hat{\theta}) \ge 1/\E(\Lambda^2)$.
 
 However, when dimension of problem goes to infinity while data-dim ratio is fixed, MLE is biased and the $p$-values are unreliable. 

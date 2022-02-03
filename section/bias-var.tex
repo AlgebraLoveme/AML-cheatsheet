@@ -1,11 +1,11 @@
 \section{Regression}
 
 \subsection*{Bias-Variance trade-off}
-$\mathcal{D}$training dataset, $\hat{f}$ be the predictive function.
-$ \E_D \E_{Y\mid X} (\hat{f}(X)-Y)^2 = \E_D (\hat{f}(x)-\E_D \hat{f}(x))^2 + \left(\E_D \hat{f}(x)-\E(Y\mid X)\right)^2 + \E_D (\E(Y\mid X)-Y)^2 = \text{ModelVariance} + \text{Bias}^2 + \text{IntrinsicNoise}$. 
+$\mathcal{D}$ training dataset, $\hat{f}$ predictive function.
+$ \E_D \E_{Y\mid X} (\hat{f}(X)-Y)^2 = \E_D (\hat{f}(x)-\E_D \hat{f}(x))^2 + \left(\E_D \hat{f}(x)-\E(Y\mid X)\right)^2 + \E_D (\E(Y\mid X)-Y)^2 = \text{Model Variance} + \text{Bias}^2 + \text{Intrinsic Noise}$. 
 
 The optimal trade-off is achieved by avoiding under-fitting (large bias) and over-fitting (large variance). Note that here the variance of output is computed by refitting the regressor on a new dataset.
 
 \subsection*{Regularization}
 
-Ridge and Lasso can be viewed as MAP estimation with a prior on $\beta$. Ridge has a Gaussian Prior and LASSO a Laplacian prior. Using SVD, we get Ridge has built-in model selection:  $X\beta^{\text{Ridge}} = \sum_{j=1}^d [d_j^2 /(d_j^2+\lambda)] u_j u_j^T Y$ (each $u_j u_j^T Y$ can be viewed as a model). Lasso has more sparse estimations because the gradient of regularization does not shrink as Ridge.
+Ridge and Lasso can be viewed as MAP estimation with a prior on $\beta$. Ridge = Gaussian Prior and LASSO = Laplacian prior. Using SVD, we get Ridge has built-in model selection:  $X\beta^{\text{Ridge}} = \sum_{j=1}^d [d_j^2 /(d_j^2+\lambda)] u_j u_j^T Y$ (each $u_j u_j^T Y$ can be viewed as a model). Lasso has more sparse estimations because the gradient of regularization does not shrink as Ridge.
