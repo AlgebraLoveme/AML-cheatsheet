@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.12.22)  3 FEB 2022 19:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.12.22)  3 FEB 2022 19:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1173,14 +1173,14 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: landscape 
 * h-part:(L,W,R)=(11.38109pt, 822.28467pt, 11.38109pt)
-* v-part:(T,H,B)=(5.69054pt, 580.43625pt, 11.38109pt)
+* v-part:(T,H,B)=(11.38109pt, 574.7457pt, 11.38109pt)
 * \paperwidth=845.04684pt
 * \paperheight=597.50787pt
 * \textwidth=822.28467pt
-* \textheight=580.43625pt
+* \textheight=574.7457pt
 * \oddsidemargin=-60.8889pt
 * \evensidemargin=-60.8889pt
-* \topmargin=-103.57945pt
+* \topmargin=-97.8889pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=11.0pt
@@ -1221,156 +1221,4 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 ) (./section/parametric_estimation.tex
 LaTeX Font Info:    Trying to load font information for T1+SourceSansPro-TLF on input line 1.
- (d:/texlive/2020/texmf-dist/tex/latex/sourcesanspro/T1SourceSansPro-TLF.fd
-File: T1SourceSansPro-TLF.fd 2020/01/19 (autoinst) Font definitions for T1/SourceSansPro-TLF.
-)
-LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/m/n' aliased to
-(Font)              `T1/SourceSansPro-TLF/regular/n' on input line 1.
-LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/regular/n' will be
-(Font)              scaled to size 10.0pt on input line 1.
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `SourceSansPro-TLF' (encoding: T1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
-LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/b/n' aliased to
-(Font)              `T1/SourceSansPro-TLF/bold/n' on input line 1.
-LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/bold/n' will be
-(Font)              scaled to size 10.0pt on input line 1.
-LaTeX Font Info:    Trying to load font information for TS1+jkp on input line 3.
- (d:/texlive/2020/texmf-dist/tex/latex/kpfonts/ts1jkp.fd
-File: ts1jkp.fd 2007/08/30 Fontinst v1.928 font definitions for TS1/jkp.
-)
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `jkp' (encoding: TS1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
-LaTeX Font Info:    Trying to load font information for OT1+jkp on input line 3.
- (d:/texlive/2020/texmf-dist/tex/latex/kpfonts/ot1jkp.fd
-File: ot1jkp.fd 2007/08/30 Fontinst v1.928 font definitions for OT1/jkp.
-)
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `jkp' (encoding: OT1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
-LaTeX Font Info:    Trying to load font information for U+jkpmia on input line 3.
- (d:/texlive/2020/texmf-dist/tex/latex/kpfonts/ujkpmia.fd
-File: ujkpmia.fd 2006/08/15 v1.0
-)
-LaTeX Font Info:    Trying to load font information for U+jkpsya on input line 3.
- (d:/texlive/2020/texmf-dist/tex/latex/kpfonts/ujkpsya.fd
-File: ujkpsya.fd 2006/08/15 v1.0
-)
-LaTeX Font Info:    Trying to load font information for U+jkpsyb on input line 3.
- (d:/texlive/2020/texmf-dist/tex/latex/kpfonts/ujkpsyb.fd
-File: ujkpsyb.fd 2006/08/15 v1.0
-)
-LaTeX Font Info:    Trying to load font information for U+jkpsyc on input line 3.
- (d:/texlive/2020/texmf-dist/tex/latex/kpfonts/ujkpsyc.fd
-File: ujkpsyc.fd 2006/08/15 v1.0
-)) (./section/bias-var.tex) (./section/gp.tex) (./section/discriminent.tex
-LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/m/it' aliased to
-(Font)              `T1/SourceSansPro-TLF/regular/it' on input line 25.
-LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/regular/it' will be
-(Font)              scaled to size 10.0pt on input line 25.
-
-Underfull \hbox (badness 10000) in paragraph at lines 60--61
-[]$[]\OML/jkp/m/it/10 LossL\OT1/jkp/m/n/10 (+20) (\OML/jkp/m/it/10 y; c\OT1/jkp/m/n/10 (+20) (\OML/jkp/m/it/10 x\OT1/jkp/m/n/10 (+20) )) = []\OMS/jkp/m/n/10 f\OT1/jkp/m/n/10 (+20) 0\OML/jkp/m/it/10 ; \OMS/jkp/m/n/10 ^^@\OML/jkp/m/it/10 yw[]x\OMS/jkp/m/n/10 g$[]\T1/jkp/m/n/10 (+20) . By GD
- []
-
-) (./section/convex_opt.tex) (./section/SVM.tex [1
-
-
-
-
-{d:/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]) (./section/ensemble.tex) (./section/generative_model.tex
-Underfull \hbox (badness 10000) in paragraph at lines 3--6
-[]\T1/jkp/b/n/10 (+20) ELBO  $[][] \OML/jkp/m/it/8 p\OT1/jkp/m/n/8 (+20) (\OML/jkp/m/it/8 y\OT1/jkp/m/n/8 (+20) ) = [] [] \OML/jkp/m/it/8 p\OT1/jkp/m/n/8 (+20) (\OML/jkp/m/it/8 y \OMS/jkp/m/n/8 j \OML/jkp/m/it/8 ^^R\OT1/jkp/m/n/8 (+20) )\OML/jkp/m/it/8 p\OT1/jkp/m/n/8 (+20) (\OML/jkp/m/it/8 ^^R\OT1/jkp/m/n/8 (+20) )\OML/jkp/m/it/8 d^^R \OT1/jkp/m/n/8 (+20) =
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 3--6
-[] \U/jkpsyb/m/n/8 E[] [] \OMS/jkp/m/n/8 ^^U \U/jkpsyb/m/n/8 E[] [] \OT1/jkp/m/n/8 (+20) =
- []
-
-
-Overfull \hbox (5.66809pt too wide) detected at line 20
-[][][]
- []
-
-
-Underfull \hbox (badness 5924) in paragraph at lines 24--25
-\T1/jkp/m/n/10 (+20) ra-tor $[]\OML/jkp/m/it/10 G$[] \T1/jkp/m/n/10 (+20) and Dis-cri-mi-na-tor $[]\OML/jkp/m/it/10 D$[]\T1/jkp/m/n/10 (+20) . Op-ti-mi-
- []
-
-
-Underfull \hbox (badness 5592) in paragraph at lines 24--25
-\T1/jkp/m/n/10 (+20) ze $[][][] [][] \OML/jkp/m/it/10 V\OT1/jkp/m/n/10 (+20) (\OML/jkp/m/it/10 D; G\OT1/jkp/m/n/10 (+20) )$[] \T1/jkp/m/n/10 (+20) whe-re $[]\OML/jkp/m/it/10 V\OT1/jkp/m/n/10 (+20) (\OML/jkp/m/it/10 D; G\OT1/jkp/m/n/10 (+20) ) =
- []
-
-
-Underfull \hbox (badness 7415) in paragraph at lines 35--45
-\T1/jkp/m/n/10 (+20) so  $[][] \OT1/jkp/m/n/8 (+20) = \U/jkpsyb/m/n/8 E\OT1/jkp/m/n/8 (+20) [(\OML/jkp/m/it/8 ^^R[] \OMS/jkp/m/n/8 ^^@ \OML/jkp/m/it/8 ^^R[]\OT1/jkp/m/n/8 (+20) )[]] \OMS/jkp/m/n/8 ^^@ \OT1/jkp/m/n/8 (+20) 2\OML/jkp/m/it/8 ^^Q\OT1/jkp/m/n/8 (+20) (\OML/jkp/m/it/8 t\OT1/jkp/m/n/8 (+20) )\U/jkpsyb/m/n/8 E\OT1/jkp/m/n/8 (+20) [\OML/jkp/m/it/8 `\OT1/jkp/m/n/8 (+20) (\OML/jkp/m/it/8 ^^R[]\OT1/jkp/m/n/8 (+20) )(\OML/jkp/m/it/8 ^^R[] \OMS/jkp/m/n/8 ^^@
- []
-
-) (./section/nonparam-Bayes.tex
-Overfull \hbox (12.25575pt too wide) in paragraph at lines 4--6
-[]\OML/jkp/m/it/10 p\OT1/jkp/m/n/10 (-20) (\OML/jkp/m/it/10 ^^V; \U/jkpmia/m/it/10 ^^F\OMS/jkp/m/n/10 j\OML/jkp/m/it/10 m[]; k[]; v[]; S[]\OT1/jkp/m/n/10 (-20) ) = \OMS/jkp/m/n/10 N\OT1/jkp/m/n/10 (-20) (\OML/jkp/m/it/10 ^^V\OMS/jkp/m/n/10 j\OML/jkp/m/it/10 m; \U/jkpmia/m/it/10 ^^F\OML/jkp/m/it/10 =k[]\OT1/jkp/m/n/10 (-20) )\OMS/jkp/m/n/10 W[]\OT1/jkp/m/n/10 (-20) (\U/jkpmia/m/it/10 ^^F\OMS/jkp/m/n/10 j\OML/jkp/m/it/10 S[]; v[]\OT1/jkp/m/n/10 (-20) )$[]\T1/jkp/m/n/10 (-20) . 
- []
-
-<figures/d-sep.png, id=21, 548.0475pt x 646.415pt>
-File: figures/d-sep.png Graphic file (type png)
-<use figures/d-sep.png>
-Package pdftex.def Info: figures/d-sep.png  used on input line 27.
-(pdftex.def)             Requested size: 59.42195pt x 70.08006pt.
-<figures/GMM.png, id=23, 996.72375pt x 630.355pt>
-File: figures/GMM.png Graphic file (type png)
-<use figures/GMM.png>
-Package pdftex.def Info: figures/GMM.png  used on input line 28.
-(pdftex.def)             Requested size: 99.03558pt x 62.6256pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 39--40
-[]\T1/jkp/b/n/10 (+20) Dirichlet Pro-cess (DP)\T1/jkp/m/n/10 (+20) : $[]\U/jkpmia/m/it/10 ^^B$[] \T1/jkp/m/n/10 (+20) pa-ra-me-ter
- []
-
-) (./section/pac.tex
-Underfull \hbox (badness 6252) in paragraph at lines 8--10
-[]$[]\OMS/jkp/m/n/10 jCj \OML/jkp/m/it/10 < \OMS/jkp/m/n/10 1$[]\T1/jkp/m/n/10 (+20) , fea-si-ble ca-se $[][][] \OMS/jkp/m/n/10 R\OT1/jkp/m/n/10 (+20) (\OML/jkp/m/it/10 c\OT1/jkp/m/n/10 (+20) ) =
- []
-
-
-Underfull \hbox (badness 6944) in paragraph at lines 8--10
-\OT1/jkp/m/n/10 (+20) 0$[]\T1/jkp/m/n/10 (+20) , $[]\OT1/jkp/b/n/10 (+20) P\OMS/jkp/m/n/10 fR\OT1/jkp/m/n/10 (+20) ([]) \OML/jkp/m/it/10 > ^^O\OMS/jkp/m/n/10 g ^^T jCj []\OT1/jkp/m/n/10 (+20) (\OMS/jkp/m/n/10 ^^@\OML/jkp/m/it/10 n^^O\OT1/jkp/m/n/10 (+20) )$[]\T1/jkp/m/n/10 (+20) . Proof
- []
-
-) (./section/appendix.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 82--85
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 82--85
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 82--85
-
- []
-
-[2 <./figures/d-sep.png> <./figures/GMM.png>] (./main.aux) ) 
-Here is how much of TeX's memory you used:
- 24224 strings out of 479382
- 474636 string characters out of 5873307
- 892909 words of memory out of 5000000
- 40299 multiletter control sequences out of 15000+600000
- 571938 words of font info for 442 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 108i,16n,111p,814b,376s stack positions out of 5000i,500n,10000p,200000b,80000s
-{d:/texlive/2020/texmf-dist/fonts/enc/dvips/sourcesanspro/a_emkxm5.enc}{d:/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}{d:/texlive/2020/texmf-dist/fonts/enc/dvips/kpfonts/kpfonts-expert.enc}<d:/texlive/2020/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-Bold.pfb><d:/texlive/2020/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-It.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpex.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpexa.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpmi.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpmia.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpmne.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpsy.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpsya.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpsyb.pfb><d:/texlive/2020/texmf-dist/fonts/type1/public/kpfonts/jkpsyc.pfb>
-Output written on main.pdf (2 pages, 433080 bytes).
-PDF statistics:
- 78 PDF objects out of 1000 (max. 8388607)
- 55 compressed objects within 1 object stream
- 0 named destinations out of 1000 (max. 500000)
- 112663 words of extra memory for PDF output out of 128383 (max. 10000000)
-
+ (d:/texlive/2020/texmf-dist/tex/latex/sourcesanspro/T1SourceSansPro-TLF.
