@@ -1,4 +1,4 @@
-\section{Optimization with Constrain}
+\section{Optimization with Constraint}
 
 \textbf{Problem} $\min_{x} f(x)$ s.t. $g_{i\in [I]}(x)\leq 0$ and $h_{j\in[J]}(x)=0$. 
 Solve it with \textbf{KKT Cond}: (1) Stationary $\nabla f + \sum_{i}\lambda_i\nabla g_i + \sum_j \mu_j \nabla h_j = 0$, (2) $h_j(x) = 0$, (3) primal feasibility $g_i(x)\leq 0$, (4) dual feasibility $\lambda_i\geq 0$, (5) complementary slackness $\lambda_i g_i(x) = 0$.

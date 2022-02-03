@@ -34,7 +34,7 @@ However, naive gradient descent has two weaknesses: (1) it often has a zig-zag b
 
 \subsubsection*{Newton's Method}
 
-Taylor-expand $L(w)$ at $w_k$ to derive the optimal $w^{k+1}$: $L(w) \approx L(w) + (w-w^k)^T \nabla L(w^k) + \frac{1}{2}(w-w^k)^T H_L(w^k) (w-w^k) \Rightarrow w^{k+1} = w^k - H_L^{-1}(w^k)\nabla L(w^k)$. 
+Taylor-expand $L(w)$ at $w_k$ to derive the optimal $w^{k+1}$: $L(w) \approx L(w^k) + (w-w^k)^T \nabla L(w^k) + \frac{1}{2}(w-w^k)^T H_L(w^k) (w-w^k) \Rightarrow w^{k+1} = w^k - H_L^{-1}(w^k)\nabla L(w^k)$. 
 
 Pros: (1) better updates compared to GD since it uses the second Taylor term and (2) does not require learning rate.
 
