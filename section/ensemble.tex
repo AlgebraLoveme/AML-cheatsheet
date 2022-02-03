@@ -1,19 +1,23 @@
 \section{Ensemble}
 
-\textbf{Bagging} Each bagged estimator have $$
+\textbf{Bagging} Each bagged estimator have bias $\beta = \mathbb{E}(y-b(x))^2$, variance $\sigma^2 = \text{Var}b(x)$ covariance $\rho^2 = \text{Cov}(b(x),b'(x))/\sigma^2$. Then $\mathbb{E}(y-\sum_m b^{(m)}(x)/M)^2 = \beta^2 + \sum_m \mathbb{E}(\beta-b^{(m)}(x))^2/M^2 = \beta^2 + \sigma^2/M + \sigma^2\rho^2(1-1/M)$. In class we assume $\rho=0$. Anyway Bagging reduces variance.
 
-\subsection*{Random Forest}
+Random Forest is a case of Bagging. Bagging induces implicit regularization.
 
-Random feature selection induces regulation.
+\textbf{Adaboost} \begin{footnotesize}
+    Initial $w_i^{(0)}=1/n$. For $t\in[M]$, (1) train $f_{t}(x) = \operatorname{argmin}_{b(x)} \sum w_{i}^{(t)} \mathbb{I}_{\{y_{i} \neq b(\mathbf{x}_{i})\}}$ (2) error $\epsilon_{t}=(\sum w_{i}^{(t)} \mathbb{I}_{\{y_{i} \neq f_{t}(x_{i})\}}) / \sum w_{i}^{(t)}$ (3) estimator weight $\alpha_{t}=\log (\frac{1-\epsilon_{t}}{\epsilon_{t}})$ (4) data weight $w_{i}^{(t+1)}=w_{i}^{(t)} e^{\alpha_{t} \mathbb{I}_{\{y_{i} \neq f_{t}(\mathbf{x}_{i})\}}}$ \textbf{Prediction} $\hat{c}=\operatorname{sgn}(\sum_{t=1}^{M} \alpha_{t} f_{t}(\mathbf{x}))$
+\end{footnotesize}
 
-\subsection*{Adaboost}
+\textbf{Gradient Boosting} \begin{footnotesize}
+    Initial $f_0(x)=0$. For $t\in[M]$, (1) train $(\alpha_{t}, b^{(t)}) \leftarrow {\arg \min}_{\alpha>0, b \in \mathcal{H}}$ $\sum_{i=1}^{n} L(y_{i}, \alpha b(x_{i})+f_{t-1}(x_{i}))$ (2) update function $f_{t}(x) \leftarrow \alpha_{t} b^{(t)}(x)+f_{t-1}(x)$. \textbf{Prediction} $\hat{c}(x) = \operatorname{sgn}(f_{M}(x))$. Adaboost is GB with $L(y, \hat{y})=e^{-y \hat{y}}$.
+\end{footnotesize}
 
-Classifier weight $\alpha_t=\frac{1}{\text{weighted err}_t}-1$. Sample weight $w_{t+1}=\alpha_t w_t$ for mislabeled samples, o.w. unchanged.
+% Classifier weight $\alpha_t=\frac{1}{\text{weighted err}_t}-1$. Sample weight $w_{t+1}=\alpha_t w_t$ for mislabeled samples, o.w. unchanged.
 
-Adaboost has following properties:
-\begin{enumerate}
-    \item It minimizes exponential loss forwardly.
-    \item It trains max-margin classifiers.
-    \item It, as well as Random Forest, is spiky self-averaging interpolators, which localize the effect of noise.
-    \item It falls into the double descent regime: over-parameterized models can have better generalization.
-\end{enumerate}
+% Adaboost has following properties:
+% \begin{enumerate}
+%     \item It minimizes exponential loss forwardly.
+%     \item It trains max-margin classifiers.
+%     \item It, as well as Random Forest, is spiky self-averaging interpolators, which localize the effect of noise.
+%     \item It falls into the double descent regime: over-parameterized models can have better generalization.
+% \end{enumerate}

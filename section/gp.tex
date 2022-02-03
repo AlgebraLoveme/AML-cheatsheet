@@ -17,7 +17,7 @@ A function is a kernel iff (1) symmetry $k(x, x^\prime)=k(x^\prime, x)$ and (2) 
 If $k_{1,2}$ are valid kernels, then followings are valid: (1) $k(x, x^\prime) = k_1(x, x^\prime) + k_2(x, x^\prime)$. (2) $k(x, x^\prime) = k_1(x, x^\prime)\cdot k_2(x, x^\prime)$. Proof: let $V\sim \normal(0, K_1)$, $W\sim \normal(0, k_2)$ and is independent to $V$, then $\cov(V_i W_i, V_j W_j) = \cov(V_i, V_j)\cov(W_i, W_j) = k_1\cdot k_2(x_i, x_j)$. (3) $k(x, x^\prime) = c k_1(x, x^\prime)$ for constant $c>0$. (4) $k(x, x^\prime) = f(k_1(x, x^\prime))$ if $f$ is a polynomial with positive coefficients or the exp. Proof: polynomial can be proved by applying the product, positive scaling and addition. Exp can be proved by taking limit on the polynomial. (5) $k(x, x^\prime) = f(x) k_1(x, x^\prime) f(x^\prime)$. (6) $k(x, x^\prime) = k_1(\phi(x), \phi(x^\prime))$ for any function $\phi$.
 
 
-Example: RBF kernel $k(x,y) = \exp(-||x-y||^2/2\sigma^2) = \exp(-||x||^2/2\sigma^2) \times \exp(x^T y/2\sigma^2) \times \exp(-||y||^2/2\sigma^2)$ is valid. (1) $x^T y$ linear kernel is valid (2) then $\exp(\frac{1}{\sigma^2}x^T y)$ is valid, (3) let $f(x) = \exp(-\frac{1}{2\sigma^2} ||x||^2)$, by rules $f(x) k(x, y) f(y)$ RBF is valid.
+Example: RBF kernel $k(x,y) = e^{-||x-y||^2/2\sigma^2} = e^{-||x||^2/2\sigma^2}\times e^{x^T y/2\sigma^2} \times e^{-||y||^2/2\sigma^2}$ is valid. (1) $x^T y$ linear kernel is valid (2) then $\exp(\frac{1}{\sigma^2}x^T y)$ is valid, (3) let $f(x) = \exp(-\frac{1}{2\sigma^2} ||x||^2)$, by rules $f(x) k(x, y) f(y)$ RBF is valid.
 
 \textbf{Mercer's Theorem}: Assume $k(x, x^\prime)$ is a valid kernel. Then there exists an orthogonal basis $e_i$ and $\lambda_i\ge 0$, s.t. $k(x, x^\prime) = \sum_{i} \lambda_i e_i(x) e_i(x^\prime)$.
 
