@@ -23,3 +23,20 @@
 
 
 \section{Convergence of SGD, Robbins-Monro} 
+Loss gradient $\ell(\cdot)$, SGD update $z^{(t)} \leftarrow \ell \theta^{(t)}+\gamma^{(t)}, \theta^{(t+1)} \leftarrow \theta^{(t)}-\eta(t) z^{(t)}$, $\gamma^{(t)}$ noise. 
+
+Problem: Whether $\theta^{\infty}\to \arg_{\theta^*}\mathbb{E}[\ell (\theta^*)]\triangleq 0$? 
+
+Assume: (1) $\mathbb{E}[\gamma] = 0$, (2) $\mathbb{E}[\gamma^2] = \sigma$ (3) $\left(\theta-\theta^{*}\right) \ell(\theta)>0,\forall \theta\neq\theta^*$ (4) $\exists b,\ell(\theta) < b,\forall \theta$. If (1) $\eta^{(t)}\to 0$ (2) $\underset{t<\infty}{\sum} \eta(t)=\infty$ (3) $\underset{t<\infty}{\sum} \eta^{2}(t)<\infty$, then $\mathbb{P}\left(\theta^{*}=\theta^{(t)}\right) \underset{t \rightarrow \infty}{\longrightarrow} 1$.
+
+Proof:
+\begin{scriptsize}
+    $\mathbb{E}[(\theta^{(t+1)}-\theta^{*})^{2}]=\mathbb{E}[((\theta^{(t)}-\theta^{*})-\eta(t) l(\theta^{(t)})-\eta(t) \gamma^{(t)})^2]$.
+\end{scriptsize}
+$\gamma^{(t)}$ independent with $\theta^{(t)}$, $\ell(\theta^{(t)})$, so 
+\begin{scriptsize}
+    $\text{LHS}=\mathbb{E}[(\theta^{*}-\theta^{(t)})^{2}]-2 \eta(t) \mathbb{E}[\ell(\theta^{(t)})(\theta^{*}-\theta^{(t)})]+\eta^{2}(t)(\mathbb{E}[\ell^{2}(\theta^{(t)})]+\mathbb{E}[\gamma^{2}(t)]) \leq \mathbb{E}[(\theta^{*}-\theta^{(0)})^{2}]-2\sum_{i\leq t} \eta(i) \mathbb{E}[\ell(\theta^{(i)})(\theta^{*}-\theta^{(i)})]+ \sum_{i \leq t} \eta^{2}(i)\left(b^{2}+\sigma^{2}\right)$
+Since 
+    $0\leq \mathbb{E}[(\theta^{*}-\theta^{(t+1)})^{2}] \nless-\infty$, $0 =  \underset{i \rightarrow \infty}{\lim} \mathbb{E}[\ell(\theta^{(i)})(\theta^{*}-\theta^{(i)})]= \underset{i \rightarrow \infty}{\lim}\mathbb{P}(\theta^{*}=\theta^{(i)}) \mathbb{E}[\ell(\theta^{(i)})(\theta^{*}-\theta^{(i)}) | \theta^{*}=\theta^{(i)}]+ \mathbb{P}(\theta^{*} \neq \theta^{(i)}) \mathbb{E}[\ell(\theta^{(i)})(\theta^{*}-\theta^{(i)}) | \theta^{*} \neq \theta^{(i)}]$, $\underset{i \rightarrow \infty}{\lim} \mathbb{P}\left(\theta^{*} \neq \theta^{(i)}\right)=0$
+\end{scriptsize}
+
