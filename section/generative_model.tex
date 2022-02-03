@@ -1,33 +1,34 @@
 \section{Generative Models}
 
 \textbf{ELBO} \begin{scriptsize}
-    $\log p(y) = \log \int p(y \mid \theta) p(\theta) d \theta = \log \mathbb{E}_{\theta \sim q}\left[p(y \mid \theta) \frac{p(\theta)}{q(\theta)}\right] \geq \mathbb{E}_{\theta \sim q}\left[\log \left(p(y \mid \theta) \frac{p(\theta)}{q(\theta)}\right)\right]  = \mathbb{E}_{\theta \sim q}[\log p(y \mid \theta)]-K L(q \| p(\cdot))$
+    $\ln p(y) = \ln \int p(y \mid \theta) p(\theta) d \theta = \ln \mathbb{E}_{\theta \sim q}\left[p(y \mid \theta) \frac{p(\theta)}{q(\theta)}\right] \geq \mathbb{E}_{\theta \sim q}\left[\ln \left(p(y \mid \theta) \frac{p(\theta)}{q(\theta)}\right)\right]  = \mathbb{E}_{\theta \sim q}[\ln p(y \mid \theta)]-K L(q \| p(\cdot))$
 \end{scriptsize}
 
 \textbf{VAE} Goal: Find a latent representation $z$ of $x$ with simple prior $p_\theta(z)$. Problem: $p_\theta(x) = \mathbb{E}_{\theta}p(x|z)$ intractable. Solution: use encoder net $q_e(x|z)$ and $q_d(z|x)$ to model conditional and posterior prob.
 
-\textbf{ELBO for VAE training} loss $l=\sum \log \left(p_{\theta}\left(x_{i}\right)\right)$
-% \vspace{-0.4cm}
-\begin{tiny}
+\textbf{ELBO for VAE training} loss $l=\sum \ln \left(p_{\theta}\left(x_{i}\right)\right)$
+\vspace{-0.4cm}
+\begin{scriptsize}
     \begin{equation*}
         \begin{aligned}
-             & \log \left(p_{\theta}\left(x_{i}\right)\right)=\mathbb{E}_{Z \sim q_{\phi}\left(z \mid x_{i}\right)}\left[\log p_{\theta}\left(x_{i}\right)\right] = \mathbb{E}_{Z}\left[\log \frac{p_{\theta}\left(x_{i} \mid z\right) p_{\theta}(z)}{p_{\theta}\left(z \mid x_{i}\right)}\right]                                                                                                                                                                                                                                                                                                                      \\
-             & = \mathbb{E}_{Z}\left[\log \frac{p_{\theta}\left(x_{i} \mid z\right) p_{\theta}(z)}{p_{\theta}\left(z \mid x_{i}\right)} \frac{q_{\phi}\left(z \mid x_{i}\right)}{q_{\phi}\left(z \mid x_{i}\right)}\right]                                                                                                                                                                                                                                                                                                                                                                                             \\
-             & = \mathbb{E}_{Z}\left[\log p_{\theta}\left(x_{i} \mid z\right)\right] -\mathbb{E}_{Z}\left[\log \frac{q_{\phi}\left(z \mid x_{i}\right)}{p_{\theta}(z)}\right]+\mathbb{E}_{Z}\left[\log \frac{q_{\phi}\left(z \mid x_{i}\right)}{p_{\theta}\left(z \mid x_{i}\right)}\right] = \\
-             & \underbrace{\mathbb{E}_{Z}\left[\log p_{\theta}\left(x_{i} \mid z\right)\right]-D_{K L}\left(q_{\phi}\left(z \mid x_{i}\right) \| p_{\theta}(z)\right)}_{\mathcal{L}\left(x_{i}, \theta, \phi\right)}+\underbrace{D_{K L}\left(q_{\phi}\left(z \mid x_{i}\right) \| p_{\theta}\left(z \mid x_{i}\right)\right)}_{\geq 0}
+             & \ln \left(p_{\theta}\left(x_{i}\right)\right)=\underset{Z \sim q_{\phi}\left(z \mid x_{i}\right)}{\mathbb{E}}\left[\ln p_{\theta}\left(x_{i}\right)\right] = \mathbb{E}_{Z}\left[\ln \frac{p_{\theta}\left(x_{i} \mid z\right) p_{\theta}(z)}{p_{\theta}\left(z \mid x_{i}\right)}\right]                               \\
+             & = \mathbb{E}_{Z}\left[\ln \frac{p_{\theta}\left(x_{i} \mid z\right) p_{\theta}(z)}{p_{\theta}\left(z \mid x_{i}\right)} \frac{q_{\phi}\left(z \mid x_{i}\right)}{q_{\phi}\left(z \mid x_{i}\right)}\right]                                          \\
+             & = \mathbb{E}_{Z}\left[\ln p_{\theta}\left(x_{i} \mid z\right)\right] - \mathbb{E}_{Z}\left[\ln \frac{q_{\phi}\left(z \mid x_{i}\right)}{p_{\theta}(z)}\right]+\mathbb{E}_{Z}\left[\ln \frac{q_{\phi}\left(z \mid x_{i}\right)}{p_{\theta}\left(z \mid x_{i}\right)}\right]                                                                                                                 \\
+             & = \underbrace{\mathbb{E}_{Z}\left[\ln p_{\theta}\left(x_{i} \mid z\right)\right]-\mathrm{KL}\left(q_{\phi}\left(z \mid x_{i}\right) \| p_{\theta}(z)\right)}_{\text{ELBO }\mathcal{L}\left(x_{i}, \theta, \phi\right)} \\
+             &+ \mathrm{KL}\left(q_{\phi}\left(z \mid x_{i}\right) \| p_{\theta}\left(z \mid x_{i}\right)\right) \geq \text{ELBO}.
         \end{aligned}
     \end{equation*}
-\end{tiny}
-% \vspace{-0.4cm}
+\end{scriptsize}
+\vspace{-0.4cm}
 
-\textbf{Generative Adversarial Network}: Generator $G$ and Discriminator $D$. Optimize $\min _{G} \max _{D} V(D, G)$ where $V(D, G) = \mathbb{E}_{x \sim p_{\text {data }}(x)}[\log D(x)]+\mathbb{E}_{z \sim p_{z}(z)}[\log (1-D(G(z)))]$
+\textbf{Generative Adversarial Network}: Generator $G$ and Discriminator $D$. Optimize $\min _{G} \max _{D} V(D, G)$ where $V(D, G) = \mathbb{E}_{x \sim p_{\text {data }}(x)}[\ln D(x)]+\mathbb{E}_{z \sim p_{z}(z)}[\ln (1-D(G(z)))]$
 
 
 
-\section{Convergence of SGD, Robbins-Monro} 
-Loss gradient $\ell(\cdot)$, SGD update $z^{(t)} \leftarrow \ell \theta^{(t)}+\gamma^{(t)}, \theta^{(t+1)} \leftarrow \theta^{(t)}-\eta(t) z^{(t)}$, $\gamma^{(t)}$ noise. 
+\section{Convergence of SGD, Robbins-Monro}
+Loss gradient $\ell(\cdot)$, SGD update $z^{(t)} \leftarrow \ell \theta^{(t)}+\gamma^{(t)}, \theta^{(t+1)} \leftarrow \theta^{(t)}-\eta(t) z^{(t)}$, $\gamma^{(t)}$ noise.
 
-Problem: Whether $\theta^{\infty}\to \arg_{\theta^*}\mathbb{E}[\ell (\theta^*)]\triangleq 0$? 
+Problem: Whether $\theta^{\infty}\to \arg_{\theta^*}\mathbb{E}[\ell (\theta^*)]\triangleq 0$?
 
 Assume: (1) $\mathbb{E}[\gamma] = 0$, (2) $\mathbb{E}[\gamma^2] = \sigma$ (3) $\left(\theta-\theta^{*}\right) \ell(\theta)>0,\forall \theta\neq\theta^*$ (4) $\exists b,\ell(\theta) < b,\forall \theta$. If (1) $\eta^{(t)}\to 0$ (2) $\underset{t<\infty}{\sum} \eta(t)=\infty$ (3) $\underset{t<\infty}{\sum} \eta^{2}(t)<\infty$, then $\mathbb{P}\left(\theta^{*}=\theta^{(t)}\right) \underset{t \rightarrow \infty}{\longrightarrow} 1$.
 
@@ -35,10 +36,10 @@ Proof:
 \begin{scriptsize}
     $\mathbb{E}[(\theta^{(t+1)}-\theta^{*})^{2}]=\mathbb{E}[((\theta^{(t)}-\theta^{*})-\eta(t) l(\theta^{(t)})-\eta(t) \gamma^{(t)})^2]$.
 \end{scriptsize}
-$\gamma^{(t)}$ independent with $\theta^{(t)}$, $\ell(\theta^{(t)})$, so 
+$\gamma^{(t)}$ independent with $\theta^{(t)}$, $\ell(\theta^{(t)})$, so
 \begin{scriptsize}
     $\text{LHS}=\mathbb{E}[(\theta^{*}-\theta^{(t)})^{2}]-2 \eta(t) \mathbb{E}[\ell(\theta^{(t)})(\theta^{*}-\theta^{(t)})]+\eta^{2}(t)(\mathbb{E}[\ell^{2}(\theta^{(t)})]+\mathbb{E}[\gamma^{2}(t)]) \leq \mathbb{E}[(\theta^{*}-\theta^{(0)})^{2}]-2\sum_{i\leq t} \eta(i) \mathbb{E}[\ell(\theta^{(i)})(\theta^{*}-\theta^{(i)})]+ \sum_{i \leq t} \eta^{2}(i)\left(b^{2}+\sigma^{2}\right)$
-Since 
+    Since
     $0\leq \mathbb{E}[(\theta^{*}-\theta^{(t+1)})^{2}] \nless-\infty$, $0 =  \underset{i \rightarrow \infty}{\lim} \mathbb{E}[\ell(\theta^{(i)})(\theta^{*}-\theta^{(i)})]= \underset{i \rightarrow \infty}{\lim}\mathbb{P}(\theta^{*}=\theta^{(i)}) \mathbb{E}[\ell(\theta^{(i)})(\theta^{*}-\theta^{(i)}) | \theta^{*}=\theta^{(i)}]+ \mathbb{P}(\theta^{*} \neq \theta^{(i)}) \mathbb{E}[\ell(\theta^{(i)})(\theta^{*}-\theta^{(i)}) | \theta^{*} \neq \theta^{(i)}]$, $\underset{i \rightarrow \infty}{\lim} \mathbb{P}\left(\theta^{*} \neq \theta^{(i)}\right)=0$
 \end{scriptsize}
 
