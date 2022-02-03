@@ -1,35 +1,60 @@
 \section{Support Vector Machine}
+\subsection*{Linear Separable Case}
+\textbf{Primal}: $\max_{w,b} \left\{\frac{1}{||w||} \min_{i}  y_{i}(w^{\top}x_{i}+b)\right\} \Leftrightarrow$
 
-\subsection*{Hard-Margin SVM}
+$\max_{w,b,t} t$ s.t. $\forall i,t\leq y_{i}(w^{\top}x_{i}+b)$ and $||w|| = 1$
 
-The optimization form is to minimize $\frac{1}{2}||w||^2$, s.t. $y_i(w^T x_i+w_0)\ge 1$ ($y_i\in \{-1,1\}$). It is convex and the Slater's condition holds under the assumption of linear separability.
+$\Leftrightarrow \min_{w,b} \frac{1}{2} w^2$ s.t. $\forall i,1 \leq y_{i}(w^{\top}x_{i}+b)$ 
 
-By solving $\min_{w, w_0} L(w, w_0, \alpha)$, the duality form is $\max_\alpha -\frac{1}{2}\sum_{i,j} \alpha_i \alpha_j y_i y_j x_i^T x_j+\sum_i \alpha_i$, s.t. $\alpha_i\ge 0$, $\sum_i \alpha_i y_i = 0$. $w^* = \sum_{i\in \text{support vec}} \alpha_i^* y_i x_i$.
+(1) KKT cond: $\forall i, \alpha_i \geq 0, (1-y_{i}(w^{\top}x_{i}+b))\leq 0, \alpha_{i}(1-y_{i}(w^{\top}x_{i}+b)) = 0$
 
-\subsection*{Soft-Margin SVM \& Kernel SVM}
+(2) \textbf{Dual}: $\max_{\alpha} \sum_{i} \alpha_{i} - \frac{1}{2}\sum_{i,j}\alpha_{i} \alpha_{j} y_{i} y_{j} K(x_{i},x_{j})$ s.t. $(\alpha_i \geq 0)\land (\sum_{i} \alpha_{i} y_{i} = 0)$
 
-When the data is not linearly separable, one solution is to add slack variables: $\min_{\xi,w,w_0} \frac{1}{2}||w||^2+C\sum_i \xi_i$, s.t. $y_i(w^T x_i+w_0) \ge 1-\xi_i$ and $\xi_i\ge 0$. Note: when the data is linearly separable, soft-margin does not necessarily produce the same cut-plane as the hard-margin SVM, especially when the margin is small due to few support vectors. When $C\rightarrow\infty$, it becomes hard-margin SVM.
+\subsection*{Non-separable Case}
+Introduce slack variables $\xi_i := \max \{1 - y_i(w^{\top}x_i + b), 0\} = [1 - y_i(w^{\top}x_i + b)]_{+}$ into loss. 
 
-The only difference in the dual form is that we need an extra condition $0\le \alpha\le C$. $\xi_i^* = \max(0, 1-y_i(w^{*T}x_i+w_0))$.
+\textbf{Primal}: $\min_{w,b} \frac{1}{2} w^2 + C\sum_i\xi_i = \min_{w,b} \frac{1}{2} w^2 + C[1 - y_i(w^{\top}x_i + b)]_{+}$.  Hinge loss $[1-x]_{+}$.
 
-Another solution, Kernel SVM, is to use $K(x_i, x_j) = \phi(x_i)^T \phi(x_j)$ to replace $x_i^T x_j$.
+Equivalent form: $\min_{w,b} \frac{1}{2} w^2 + C\sum_i\xi_i$ s.t. $ y_i(w^{\top}x_i + b) \geq 1-\xi_i$ and $\xi_i \geq 0$
+
+\textbf{Dual}: $\max_{\alpha} \sum_{i} \alpha_{i} - \frac{1}{2}\sum_{i,j}\alpha_{i} \alpha_{j} y_{i} y_{j} K(x_i, x_j)$ s.t. $\sum_i \alpha_i y_i=0 $ and $0\leq \alpha_i \leq C$
+
 
 \subsection*{Multi-class SVM}
-
-Idea: use M := \#class hyperplanes and maximize the generalized margin: $\min \sum_{i=1}^M w_i^T w_i$ s.t. $w_{y_i}^T x_i + w_{y_i, 0} - \max_{y\ne y_i} w_y^T x_i + w_{y,0} \ge 1$.
+$\min_{w=[w_{0:K-1}],b=[b_{0:K-1}]} \frac{1}{2} ||w||^2 + \sum_i C\xi_i$ s.t. $\xi_i\geq 0$ and $(w_{y_i}^{\top} x +b_{y_i}) - (w_{y}^{\top}x + b_{y}) \geq 1 -\xi_i, \forall y\neq y_i$
 
 \subsection*{Structural SVM}
+$y$ is structured, e.g. trees, maximum margin between $y_i,y_j$ depends on their similarity, so the condition changes to $w^{\top}\Psi(x_i,y_i)) - w^{\top}\Psi(x_i,y)) \geq \Delta(y_i,y) -\xi_i,\;\forall\;y\neq y_i$.
+% \subsection*{Hard-Margin SVM}
 
-Goal: predict a structured output label, e.g., parsing trees.
+% The optimization form is to minimize $\frac{1}{2}||w||^2$, s.t. $y_i(w^T x_i+w_0)\ge 1$ ($y_i\in \{-1,1\}$). It is convex and the Slater's condition holds under the assumption of linear separability.
 
-\inLongVersion{
-Difficulty of predicting structures:
-\begin{enumerate}
-    \item Compact representation of output space. Sol: use a score function and feature map $\hat{y}=\argmax_y w^T \Psi(x, y)$.
-    \item Efficient prediction (cannot use brute-force search to find argmax). Sol: assume structures such as decomposable output spaces.
-    \item Define prediction error (cannot use 0/1 errors). Sol: use a loss function $\Delta(y, \hat{y})$.
-    \item Efficient training (cannot evaluate all constraints). Sol: iteratively add new constraints to the training.
-\end{enumerate}
-}
+% By solving $\min_{w, w_0} L(w, w_0, \alpha)$, the duality form is $\max_\alpha -\frac{1}{2}\sum_{i,j} \alpha_i \alpha_j y_i y_j x_i^T x_j+\sum_i \alpha_i$, s.t. $\alpha_i\ge 0$, $\sum_i \alpha_i y_i = 0$. $w^* = \sum_{i\in \text{support vec}} \alpha_i^* y_i x_i$.
 
-$\min _{\mathbf{w}, \boldsymbol{\xi} \geq 0} \frac{1}{2} \mathbf{w}^{\top} \mathbf{w}+C \sum_{i=1}^{n} \xi_{i}$, s.t. $\mathbf{w}^{\top} \Psi\left(z_{i}, \mathbf{y}_{i}\right)-\max _{z \neq z_{i}}\left[\Delta\left(z, z_{i}\right)+\mathbf{w}^{\top} \Psi\left(z, \mathbf{y}_{i}\right)\right] \geq-\xi_{i}, \forall \mathbf{y}_{i} \in \mathcal{Y}$.
+% \subsection*{Soft-Margin SVM \& Kernel SVM}
+
+% When the data is not linearly separable, one solution is to add slack variables: $\min_{\xi,w,w_0} \frac{1}{2}||w||^2+C\sum_i \xi_i$, s.t. $y_i(w^T x_i+w_0) \ge 1-\xi_i$ and $\xi_i\ge 0$. Note: when the data is linearly separable, soft-margin does not necessarily produce the same cut-plane as the hard-margin SVM, especially when the margin is small due to few support vectors. When $C\rightarrow\infty$, it becomes hard-margin SVM.
+
+% The only difference in the dual form is that we need an extra condition $0\le \alpha\le C$. $\xi_i^* = \max(0, 1-y_i(w^{*T}x_i+w_0))$.
+
+% Another solution, Kernel SVM, is to use $K(x_i, x_j) = \phi(x_i)^T \phi(x_j)$ to replace $x_i^T x_j$.
+
+% \subsection*{Multi-class SVM}
+
+% Idea: use M := \#class hyperplanes and maximize the generalized margin: $\min \sum_{i=1}^M w_i^T w_i$ s.t. $w_{y_i}^T x_i + w_{y_i, 0} - \max_{y\ne y_i} w_y^T x_i + w_{y,0} \ge 1$.
+
+% \subsection*{Structural SVM}
+
+% Goal: predict a structured output label, e.g., parsing trees.
+
+% \inLongVersion{
+% Difficulty of predicting structures:
+% \begin{enumerate}
+%     \item Compact representation of output space. Sol: use a score function and feature map $\hat{y}=\argmax_y w^T \Psi(x, y)$.
+%     \item Efficient prediction (cannot use brute-force search to find argmax). Sol: assume structures such as decomposable output spaces.
+%     \item Define prediction error (cannot use 0/1 errors). Sol: use a loss function $\Delta(y, \hat{y})$.
+%     \item Efficient training (cannot evaluate all constraints). Sol: iteratively add new constraints to the training.
+% \end{enumerate}
+% }
+
+% $\min _{\mathbf{w}, \boldsymbol{\xi} \geq 0} \frac{1}{2} \mathbf{w}^{\top} \mathbf{w}+C \sum_{i=1}^{n} \xi_{i}$, s.t. $\mathbf{w}^{\top} \Psi\left(z_{i}, \mathbf{y}_{i}\right)-\max _{z \neq z_{i}}\left[\Delta\left(z, z_{i}\right)+\mathbf{w}^{\top} \Psi\left(z, \mathbf{y}_{i}\right)\right] \geq-\xi_{i}, \forall \mathbf{y}_{i} \in \mathcal{Y}$.

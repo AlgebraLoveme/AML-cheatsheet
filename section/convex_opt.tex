@@ -1,13 +1,21 @@
-\section{Convex Optimization}
+\section{Optimization with Constrain}
 
-Definition: the objective is convex and the feasible set is convex. The standard form is to minimize a convex function ($f(w)$ for convex $f$) under affine equality constraint ($g_i(w)=0$ for affine $g_i$) and convex non-positive constraint ($h_i(w)\le 0$ for convex $h_i$).
+\textbf{Problem} $\min_{x} f(x)$ s.t. $g_{i\in [I]}(x)\leq 0$ and $h_{j\in[J]}(x)=0$. 
+Solve it with \textbf{KKT Cond}: (1) Stationary $\nabla f + \sum_{i}\lambda_i\nabla g_i + \sum_j \mu_j \nabla h_j = 0$, (2) $h_j(x) = 0$, (3) primal feasibility $g_i(x)\leq 0$, (4) dual feasibility $\lambda_i\geq 0$, (5) complementary slackness $\lambda_i g_i(x) = 0$.
 
-\subsection*{How to Solve}
+\textbf{Weak Duality}: Lagrangian $L(x,\lambda,\mu) = f(x)+\lambda^{\top}g(x) + \mu^{\top}h(x)$, $\lambda > 0$. Dual function $F(\lambda,\mu):=\min_x L(x,\lambda,\mu)$. Denote $\tilde{x}$ optima of original problem, then $\lambda^{\top}g(\tilde{x})+\mu^{\top}h(\tilde{x})\leq 0, \forall \lambda,\mu$, $F(\lambda,\mu) = \min_x L(x,\lambda,\mu)\leq L(\tilde{x},\lambda,\mu)\leq f(\tilde{x})=\min_{x,h(x)=0,g(x)\leq0} f(x)$
 
-(1) Define Lagrangian: $L(w, \lambda, \alpha) = f(w)+\sum_i \lambda_i g_i(w) + \sum_j \alpha_j h_j(w)$ and $\alpha_j\ge 0$.
+\subsection*{Strong Duality in Convex Optimization} 
+If \textbf{Slater's cond} (1) $f$ convex (2) $g$ convex (3) $h$ linear (4) $\exists \bar{x}$ s.t. $g_{i}(\overline{\mathbf{x}})<0$ and $h_{j}(\overline{\mathbf{x}})=0$, then Strong Duality $\max_{\lambda,\mu} F(\lambda,\mu) = \min_{x,h(x)=0,g(x)\leq0} f(x)$ holds.
 
-(2) Check whether strong duality holds using Slater's condition (sufficient but not necessary): there is a strictly feasible point, i.e., $\exists w_0$, s.t. $g_i(w_0)=0$ and $h_i(w_0)<0$.
+% Definition: the objective is convex and the feasible set is convex. The standard form is to minimize a convex function ($f(w)$ for convex $f$) under affine equality constraint ($g_i(w)=0$ for affine $g_i$) and convex non-positive constraint ($h_i(w)\le 0$ for convex $h_i$).
 
-(3) Solve for $dL(w)=0$, $g_i(w)=0$,  $\alpha\ge 0$, $h_j(w)\le 0$ and $\alpha_j h_j(w) = 0$ (complementary slackness).
+% \subsection*{How to Solve}
 
-(4) Weak duality always holds and when Slater's condition holds it equals  $\min_w f(w)$: solve $\max_{\lambda, \alpha} \Theta(\lambda, \alpha)$ s.t. $\alpha\ge 0$, where $\Theta(\lambda, \alpha) = \min_w L(w, \lambda, \alpha)$. The optimal in the weak duality is a lower bound for $\min_w f(w)$ since $\Theta(\lambda, \alpha)\le \min_w f(w)$ for any $\lambda$ and $\alpha$.
+% (1) Define Lagrangian: $L(w, \lambda, \alpha) = f(w)+\sum_i \lambda_i g_i(w) + \sum_j \alpha_j h_j(w)$ and $\alpha_j\ge 0$.
+
+% (2) Check whether strong duality holds using Slater's condition (sufficient but not necessary): there is a strictly feasible point, i.e., $\exists w_0$, s.t. $g_i(w_0)=0$ and $h_i(w_0)<0$.
+
+% (3) Solve for $dL(w)=0$, $g_i(w)=0$,  $\alpha\ge 0$, $h_j(w)\le 0$ and $\alpha_j h_j(w) = 0$ (complementary slackness).
+
+% (4) Weak duality always holds and when Slater's condition holds it equals  $\min_w f(w)$: solve $\max_{\lambda, \alpha} \Theta(\lambda, \alpha)$ s.t. $\alpha\ge 0$, where $\Theta(\lambda, \alpha) = \min_w L(w, \lambda, \alpha)$. The optimal in the weak duality is a lower bound for $\min_w f(w)$ since $\Theta(\lambda, \alpha)\le \min_w f(w)$ for any $\lambda$ and $\alpha$.

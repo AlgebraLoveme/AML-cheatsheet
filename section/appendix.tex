@@ -2,8 +2,16 @@
 
 % $\frac{\partial}{\partial \Sigma} \log|\Sigma| = \Sigma^{-T}$.
 
-$\frac{\partial \overrightarrow{u}^T \overrightarrow{v}}{\partial x} = \frac{\partial \overrightarrow{u}}{\partial x} \overrightarrow{v} +\frac{\partial \overrightarrow{v}}{\partial x} \overrightarrow{u}$.
+% $\frac{\partial \overrightarrow{u}^T \overrightarrow{v}}{\partial x} = \frac{\partial \overrightarrow{u}}{\partial x} \overrightarrow{v} +\frac{\partial \overrightarrow{v}}{\partial x} \overrightarrow{u}$.
 
-$\frac{\partial A\overrightarrow{u}}{\partial x} = \frac{\partial\overrightarrow{u}}{\partial x} A^T$.
+% $\frac{\partial A\overrightarrow{u}}{\partial x} = \frac{\partial\overrightarrow{u}}{\partial x} A^T$.
+$\frac{\partial AB}{\partial x}=A\frac{\partial B}{\partial x}+\frac{\partial A}{\partial x}B$, 
+$\frac{\partial A^{-1}}{\partial x}=-A^{-1}\frac{\partial A}{\partial x}A^{-1}$, 
+$\frac{\partial\ln\det A}{\partial x} = \mathrm{Tr}\left(A^{-1}\frac{\partial A}{\partial x}\right)$,
+$\left\{\frac{\partial f}{\partial A}\right\}_{ij}:=\frac{\partial f}{\partial a_{ji}}$,
+$\frac{\partial\mathrm{Tr}(BA)}{\partial A} = \frac{\partial\mathrm{Tr}(AB)}{\partial A}=B$,
+$\frac{\partial\ln\det A}{\partial A}=A^{-1}$,
+$\frac{\partial\mathrm{Tr}(ABA^{\top})}{\partial A}=(B+B^{\top})A^{\top}$,
+$\normal(\mu,\Sigma)$: $(2\pi)^{-d/2}|\Sigma|^{-1/2}\exp(-\frac{1}{2}(x-\mu)^T \Sigma^{-1} (x-\mu))$,
+$(A + U C^{-1} V)^{-1} = A^{-1} - A^{-1}U(C+VA^{-1}U)^{-1}V A^{-1}$.
 
-$\normal(\mu,\Sigma)$: $\frac{1}{(2\pi)^{d/2}|\Sigma|^{1/2}} \exp(-\frac{1}{2}(x-\mu)^T \Sigma^{-1} (x-\mu))$.

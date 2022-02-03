@@ -1,31 +1,26 @@
 \section{BLR and GP}
+\textbf{Conditional} $\E (y_2 \mid y_1) = \mu_2+\Sigma_{21}\Sigma_{11}^{-1} (y_1-\mu_1)$, $\cov(y_2\mid y_1) = \Sigma_{22} - \Sigma_{21}\Sigma_{11}^{-1}\Sigma_{12}$. \\
+\textbf{Marginal} $\E (y_2 ) = \mu_2$, $\cov(y_2) = \Sigma_{22}$
 
 \subsection*{Bayesian Linear Regression}
+Model $Y=X\beta+\epsilon$, $\epsilon\sim \normal(0, \sigma^2)$. Prior $\beta \sim \normal(0, \Lambda^{-1})$. Posterior $\beta \mid X, Y \sim \normal(\mu_\beta, \Sigma_\beta)$, where $\mu_\beta = (X^T X+\sigma^2\Lambda)^{-1}X^T Y$ and $\Sigma_\beta =  (\sigma^{-2}X^T X+\Lambda)^{-1}$.  
 
-$Y=X\beta+\epsilon$, $\epsilon\sim \normal(0, \sigma^2)$ and a prior $\beta \sim \normal(0, \Lambda^{-1})$. By Bayesian, $\beta \mid X, Y \sim \normal(\mu_\beta, \Sigma_\beta)$, where $\mu_\beta = (X^T X+\sigma^2\Lambda)^{-1}X^T Y$ and $\Sigma_\beta = \sigma^2 (X^T X+\sigma^2 \Lambda)^{-1}$. MAP estimation of this prior (i.e., $\mu_\beta$) is equivalent to Ridge regression given $\Lambda = \lambda I$ and $\sigma=1$.
+% MAP estimation of this prior (i.e., $\mu_\beta$) is equivalent to Ridge regression given $\Lambda = \lambda I$ and $\sigma=1$.
 
-When $\Lambda=\lambda I$, under the prior, $Y\sim \normal(0, \frac{1}{\lambda}X^T X+\sigma^2 I)$. Therefore, $\cov(y_i, y_j) = \frac{1}{\lambda}x_i^T x_j$. It means a prior that closer samples is more similar, i.e., $\cov(y_i, y_j)$ is large when $x_i^T x_j$ is large. The kernel $X^T \Lambda^{-1} X$ is thus called linear kernel. When a general kernel is used, Gaussian Process appears.
+% When $\Lambda=\lambda I$, under the prior, $Y\sim \normal(0, \frac{1}{\lambda}X^T X+\sigma^2 I)$. Therefore, $\cov(y_i, y_j) = \frac{1}{\lambda}x_i^T x_j$. It means a prior that closer samples is more similar, i.e., $\cov(y_i, y_j)$ is large when $x_i^T x_j$ is large. The kernel $X^T \Lambda^{-1} X$ is thus called linear kernel. When a general kernel is used, Gaussian Process appears.
 
 \subsection*{Gaussian Process}
+$Y = \left(\begin{matrix} Y_0 \\ Y_1 \end{matrix}\right)$ is the combination of observed and prediction value. Assume a Gaussian prior of $\mathcal{N}(0, K + \sigma^2 I)$, where $K_{ij}=k(x_i,x_j)$ is kernel. GP regression is the conditional/Posterior distribution on $Y_0$, $\mathbb{E} [Y_1|Y_0] = K_{1 0}(\sigma^{2} I_{0}+K_{00})^{-1}Y_0$, $\mathrm{Cov}[Y_1] = \sigma^{2}I_{1} + K_{11} - K_{10} (\sigma^2  I_{0} + K_{00})^{-1} K_{01}$. Bayesian LR is a special case of GP with linear kernel $k(x,y) = x^{\top}\Lambda^{-1}y$.
 
-\subsubsection*{Kernel Function}
-A function is a kernel iff $k(x, x^\prime)=k(x^\prime, x)$ (symmetry) and $\int_\Omega k(x, x^\prime) f(x) f(x^\prime) dx dx^\prime \ge 0$ for any $f \in L_2$ and $\Omega \in \mathcal{R}^d$ (semi-positiveness in continuous case) or $K(X)$ is a valid covariance matrix for any $X$ (semi-positiveness in discrete case). The latter is equivalent to either (1) $\sum_{i,j} a_i a_j K(x_i, x_j) \ge 0$ for any $a_{i,j}$ and $k_{i,j}$, or (2) $k(x, x^\prime) = \phi(x)^T \phi(x^\prime)$ for some $\phi$.
+\subsection*{Kernel Function}
+A function is a kernel iff (1) symmetry $k(x, x^\prime)=k(x^\prime, x)$ and (2) semi-positive definite $\int_\Omega k(x, x^\prime) f(x) f(x^\prime) dx dx^\prime \ge 0$ for any $f \in L_2$ and $\Omega \in \mathcal{R}^d$ (continuous) or $K(X)\succeq 0$ (discrete). The latter is equivalent to (1) $a^{\top} K a \geq 0, \forall a$ or (2) $k(x, x^\prime) = \phi(x)^T \phi(x^\prime)$ for some $\phi$.
 
-Assume $k_{1,2}$ are valid kernels, then the following are valid kernels:
-\begin{enumerate}
-    \item $k(x, x^\prime) = k_1(x, x^\prime) + k_2(x, x^\prime)$.
-    \item $k(x, x^\prime) = k_1(x, x^\prime)\cdot k_2(x, x^\prime)$. Proof: let $V\sim \normal(0, K_1)$, $W\sim \normal(0, k_2)$ and is independent to $V$, then $\cov(V_i W_i, V_j W_j) = \cov(V_i, V_j)\cov(W_i, W_j) = k_1\cdot k_2(x_i, x_j)$.
-    \item $k(x, x^\prime) = c k_1(x, x^\prime)$ for constant $c>0$.
-    \item $k(x, x^\prime) = f(k_1(x, x^\prime))$ if $f$ is a polynomial with positive coefficients or the exp. Proof: polynomial can be proved by applying the product, positive scaling and addition. Exp can be proved by taking limit on the polynomial.
-    \item $k(x, x^\prime) = f(x) k_1(x, x^\prime) f(x^\prime)$.
-    \item $k(x, x^\prime) = k_1(\phi(x), \phi(x^\prime))$ for any function $\phi$.
-\end{enumerate}
+\subsection*{Kernel Construction}
+If $k_{1,2}$ are valid kernels, then followings are valid: (1) $k(x, x^\prime) = k_1(x, x^\prime) + k_2(x, x^\prime)$. (2) $k(x, x^\prime) = k_1(x, x^\prime)\cdot k_2(x, x^\prime)$. Proof: let $V\sim \normal(0, K_1)$, $W\sim \normal(0, k_2)$ and is independent to $V$, then $\cov(V_i W_i, V_j W_j) = \cov(V_i, V_j)\cov(W_i, W_j) = k_1\cdot k_2(x_i, x_j)$. (3) $k(x, x^\prime) = c k_1(x, x^\prime)$ for constant $c>0$. (4) $k(x, x^\prime) = f(k_1(x, x^\prime))$ if $f$ is a polynomial with positive coefficients or the exp. Proof: polynomial can be proved by applying the product, positive scaling and addition. Exp can be proved by taking limit on the polynomial. (5) $k(x, x^\prime) = f(x) k_1(x, x^\prime) f(x^\prime)$. (6) $k(x, x^\prime) = k_1(\phi(x), \phi(x^\prime))$ for any function $\phi$.
 
-Example: RBF kernel $k(x,y) = \exp(-\frac{1}{2\sigma^2}||x-y||^2) = \exp(-\frac{1}{2\sigma^2} ||x||^2) \exp(\frac{1}{\sigma^2}x^T y) \exp(-\frac{1}{2\sigma^2} ||y||^2)$ is valid. Since $x^T y$ is the linear kernel and thus $\exp(\frac{1}{\sigma^2}x^T y)$ is a valid kernel, let $f(x) = \exp(-\frac{1}{2\sigma^2} ||x||^2)$, we get the RBF function equals $f(x) k(x, y) f(y)$, which is a valid kernel.
 
-\subsubsection*{Mercer's Theorem}
-Assume $k(x, x^\prime)$ is a valid kernel. Then there exists an orthogonal basis $e_i$ and $\lambda_i\ge 0$, s.t. $k(x, x^\prime) = \sum_{i} \lambda_i e_i(x) e_i(x^\prime)$.
+Example: RBF kernel $k(x,y) = \exp(-||x-y||^2/2\sigma^2) = \exp(-||x||^2/2\sigma^2) \times \exp(x^T y/2\sigma^2) \times \exp(-||y||^2/2\sigma^2)$ is valid. (1) $x^T y$ linear kernel is valid (2) then $\exp(\frac{1}{\sigma^2}x^T y)$ is valid, (3) let $f(x) = \exp(-\frac{1}{2\sigma^2} ||x||^2)$, by rules $f(x) k(x, y) f(y)$ RBF is valid.
 
-\subsection*{Conditional Gaussian}
+\textbf{Mercer's Theorem}: Assume $k(x, x^\prime)$ is a valid kernel. Then there exists an orthogonal basis $e_i$ and $\lambda_i\ge 0$, s.t. $k(x, x^\prime) = \sum_{i} \lambda_i e_i(x) e_i(x^\prime)$.
 
-$\E (y_2 \mid y_1) = \mu_2+\Sigma_{21}\Sigma_{11}^{-1} (y_1-\mu_1)$, $\var(y_2\mid y_1) = \Sigma_{22} - \Sigma_{21}\Sigma_{11}^{-1}\Sigma_{12}$.
+
