@@ -22,12 +22,12 @@ Finally, replace posterior with MC sampling: $\mathbb{E}_{\theta | X} f(x| \thet
 Data model: latent $K$ class variable $z_i $\textasciitilde$ \operatorname{Cat}(\pi)$, observed $x_i$\textasciitilde$ \mathcal{N}(\mu_{z_i}, \Sigma_{z_i})$. Prior: $\mu_k $\textasciitilde$ \mathcal{N}(m_0,V_0)$, $\Sigma_k $\textasciitilde$ \mathcal{W}^{-1}(S_0, v_0)$, $\pi$\textasciitilde$ \operatorname{Dir}(\alpha)\propto\prod_k^{K} p_{k}^{\alpha_k-1}$. Prior also intractable. 
 
 \textbf{Goal} Gibbs sampling for BI, but to simplify conditional distribution.
-% \vspace{-0.4cm}
+\vspace{-0.3cm}
 \begin{center}
     \includegraphics[width=0.3\columnwidth]{figures/d-sep.png}
     \includegraphics[width=0.50\columnwidth]{figures/GMM.png}
 \end{center}
-% \vspace{-0.5cm}
+\vspace{-0.4cm}
 
 \textbf{d-seperation}: for verifying conditional independence. Given with observed variable set $C$, if every path from variable $A$ to $B$ is blocked on probability graph, then $A$ and $B$ are independent condition on $C$. By this thm: (1) $z_i$, $z_j$ (2) $\mu$, $\pi$  (3) $\Sigma$, $\pi$ all independent condition on other parameter. Sampling procedure: \begin{scriptsize}
     (1) $z^{(t)} \leftarrow p\left(\cdot | x, \mu^{(t-1)}, \Sigma^{(t-1)}\right)$, (2) $\mu^{(t)} \leftarrow p\left(\cdot | x, \Sigma^{(t-1)}, z^{(t)}\right)$, (3) $\Sigma^{(t)} \leftarrow p\left(\cdot | x, \mu^{(t)}, z^{(t)}\right)$, (4) $\pi^{(t)} \leftarrow p\left(\cdot | x, z^{(t)}\right)$

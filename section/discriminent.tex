@@ -2,7 +2,7 @@
 
 \subsection*{Concept Comparison}
 
-\begin{enumerate}
+\begin{enumerate}[itemsep=0pt,topsep=0pt, leftmargin=2pt, itemindent=5pt, labelwidth=5pt]
     \item Probabilistic Generative, modeling $p(x, y)$: (1) can create new samples, (2) outlier detection, (3) probability for prediction, (4) high computational cost and (5) high bias.
     \item Probabilistic Discriminative, modeling $p(y\mid x)$: (1) probability for prediction, (2) medium computational cost and (3) medium bias.
     \item Discriminative, modeling $y=f(x)$: (1) no probability for prediction, (2) low computational cost and (3) low bias.
@@ -10,27 +10,23 @@
 
 \subsection*{Infer $p(x,y)$ for classification problems}
 
-Use $p(x,y) = p(y)p(x\mid y)$. Since $y$ has finite states, model $p(y)$ and $p(x\mid y)$ for different $y$. The modeling requires to (1) guess a distribution family and (2) infer parameters by MLE.
+Use $p(x,y) = p(y)p(x\mid y)$. Since $y$ has finite states, model $p(y)$ and $p(x\mid y)$ for different $y$. The modeling requires to (1) guess a distribution family and (2) infer param by MLE.
 
 \subsection*{Compute $p(y\mid x)$ by discriminant analysis (DA)}
 
-\subsubsection*{Linear DA}
-
-Goal: classify a sample into two Gaussian distribution with $\Sigma_0 = \Sigma_1$.
+\textbf{Linear DA} Assumption: classify a sample into two Gaussian distribution with $\Sigma_0 = \Sigma_1$.
 After calculation, $p(y=1\mid x) = 1/(1+\exp(-\log\frac{p(x\mid y=1)p(y=1)}{p(x\mid y=0)p(y=0)})) = 1/(1+\exp(w_1^T x +w_0))$ since the quadratic term is eliminated due to $\Sigma_0=\Sigma_1$.
 
-\subsubsection*{Quadratic DA}
-
-Goal: classify a sample into two Gaussian distribution with $\Sigma_0 \ne \Sigma_1$.
+\textbf{Quadratic DA} Assumption: classify a sample into two Gaussian distribution with $\Sigma_0 \ne \Sigma_1$.
 After calculation, $p(y=1\mid x) = 1/(1+\exp(x^T W x + w_1^T x +w_0))$.
 
 \subsection*{Optimization Methods}
 
 \subsubsection*{Optimal Learning Rate for Gradient Descent}
 
-Goal: find $\eta^* = \argmin_\eta L(w^k - \eta\cdot \nabla L(w^k))$. By Taylor expansion of $L(w^{k+1})$ at $w^k$ and solve for the optimal $\eta$, we get $\eta^* = \frac{||\nabla L(w^k)||^2}{\nabla L(w^k)^T H_L(w^k) \nabla L(w^k)}$.
+Goal: find $\eta^* = \argmin_\eta L(w^k - \eta\cdot \nabla L(w^k))$. By Taylor expansion of $L(w^{k+1})$ at $w^k$ and solve for the optimal $\eta$, we get $\eta^* = {||\nabla L(w^k)||^2}/({\nabla L(w^k)^T H_L(w^k) \nabla L(w^k)})$.
 
-However, naive gradient descent has two weaknesses: (1) it often has a zig-zag behavior, especially in a very narrow, long and slightly downward valley; (2) the gradient update is small near the stationary point. This can be mitigated by adding a momentum term in the update: $w^{k+1} = w^k -\eta \nabla L(w^k) + \mu^k (w^k -w^{k-1})$ which speeds the update towards the ``common'' direction.
+Cons of naive gradient descent: (1) zig-zag behavior, especially in a very narrow, long and slightly downward valley; (2) gradient update is small near the stationary point. Mitigated by adding momentum into update, $w^{k+1} = w^k -\eta \nabla L(w^k) + \mu^k (w^k -w^{k-1})$, this speeds update towards  ``common'' direction.
 
 \subsubsection*{Newton's Method}
 
@@ -59,11 +55,9 @@ $p(w\mid X, Y) \propto p(w, X, Y) \propto \exp(-R(w))$, where $R(w) = -\log p(w,
 
 \subsection*{LDA by loss minimization}
 
-\subsubsection*{Perceptron}
+\textbf{Perceptron} for $y_i\in\{0,1\}$, find $w$, s.t. $y_i w^T x_i >0$ for any $i$. Prediction is $c(x) = \sgn(w^T x)$.
 
-Goal: for $y_i\in\{0,1\}$, find $w$, s.t. $y_i w^T x_i >0$ for any $i$. The classification function is $c(x) = \sgn(w^T x)$.
-
-$L(y, c(x)) = 0$ if $y w^T x >0$ and $L(y, c(x)) = -y w^T x$ o.w. By gradient descent, the Perceptron is guaranteed to converge if (1) the data is linearly separable, (2) learning rate $\eta(k)>0$, (3) $\sum_k \eta(k) \rightarrow +\infty$ and (4) $(\sum_k \eta(k)^2)/(\sum_k \eta(k))^2 \rightarrow 0$. However, there exists multiple solutions if the data is linearly separable.
+$Loss L(y, c(x)) = \min\{0, -y w^T x\}$. By GD $w^{(k+1)} \leftarrow w^{(k)}+\eta(k) \sum_{i\textbf{ wrong}} y_{i} x_{i}$, Perceptron will converge if (1)  data linearly separable, (2) learning rate $\eta(k)>0$, (3) $\sum_k \eta(k) \rightarrow +\infty$ and (4) $(\sum_k \eta(k)^2)/(\sum_k \eta(k))^2 \rightarrow 0$. However, multiple solutions permitted if data linearly separable, solution unstable.
 
 \subsubsection*{Fisher's LDA}
 
