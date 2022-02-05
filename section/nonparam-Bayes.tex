@@ -1,8 +1,8 @@
 \section{Non-parametric Bayesian Inference (BI)}
 
 \subsection*{Exact Conjugate Prior of Multivariate Gaussian}
-Data: $x_i$\textasciitilde$ \mathcal{N}(\mu,\Sigma)$ i.i.d.. Inverse Wishart: $\Sigma $\textasciitilde$ \mathcal{W}^{-1}(S, v) \propto |\Sigma|^{(v+p+1)/2}$ $\exp( - \operatorname{Tr}( \Sigma^{-1} S)/2 )$. \\
-\textbf{Normal Inverse Wishart} as conjugate prior:\\ $p(\mu, \Sigma | m_0, k_0, v_0, S_0) = \mathcal{N}(\mu | m, \Sigma/k_0)\mathcal{W}^{-1}(\Sigma | S_0,v_0)$. 
+Data: $x_i\sim \mathcal{N}(\mu,\Sigma)$ i.i.d.. Inverse Wishart: $\Sigma \sim \mathcal{W}^{-1}(S, v) \propto |\Sigma|^{(v+p+1)/2}$ $\exp( - \operatorname{Tr}( \Sigma^{-1} S)/2 )$. \\
+\textbf{Normal Inverse Wishart} as conjugate prior: $p(\mu, \Sigma | m_0, k_0, v_0, S_0) = \mathcal{N}(\mu | m, \Sigma/k_0)\mathcal{W}^{-1}(\Sigma | S_0,v_0)$. 
 
 Update rule: \begin{footnotesize}
     $m_p = (k_0 m_0+N\bar{x})/(k_0+N)$, $k_p = k_0 + N$, $v_p =v_0 + N$, $S_p =S_0 + k_0 m_0 m_0^{\top} - k_p m_p m_p^{\top} + \sum (x_i-\bar{x})(x_i-\bar{x})^{\top}$. 
@@ -29,9 +29,8 @@ Data model: latent $K$ class variable $z_i $\textasciitilde$ \operatorname{Cat}(
 \end{center}
 \vspace{-0.4cm}
 
-\textbf{d-seperation}: for verifying conditional independence. Given with observed variable set $C$, if every path from variable $A$ to $B$ is blocked on probability graph, then $A$ and $B$ are independent condition on $C$. By this thm: (1) $z_i$, $z_j$ (2) $\mu$, $\pi$  (3) $\Sigma$, $\pi$ all independent condition on other parameter. Sampling procedure: \begin{scriptsize}
+\textbf{d-seperation}: for verifying conditional independence. Given with observed variable set $C$, if every path from variable $A$ to $B$ is blocked on probability graph, then $A$ and $B$ are independent condition on $C$. By this thm: (1) $z_i$, $z_j$ (2) $\mu$, $\pi$  (3) $\Sigma$, $\pi$ all independent condition on other parameter. Sampling procedure: 
     (1) $z^{(t)} \leftarrow p\left(\cdot | x, \mu^{(t-1)}, \Sigma^{(t-1)}\right)$, (2) $\mu^{(t)} \leftarrow p\left(\cdot | x, \Sigma^{(t-1)}, z^{(t)}\right)$, (3) $\Sigma^{(t)} \leftarrow p\left(\cdot | x, \mu^{(t)}, z^{(t)}\right)$, (4) $\pi^{(t)} \leftarrow p\left(\cdot | x, z^{(t)}\right)$
-\end{scriptsize}
 
 \subsection*{BI for Non-Parametric GMM}
 \textbf{Goal}: sample from infinite categorical distri.

@@ -4,7 +4,7 @@
     \item Algorithm $\mathcal{A}$ can learn $c\in C$ if there is a poly(.,.), s.t. for (1) any distri $\mathcal{D}$ on $\mathcal{X}$ and (2) $\forall \epsilon\in [0, 1/2],\delta\in [0, 1/2]$, $\mathcal{A}$ outputs $\hat{c}\in \mathcal{H}$ given a sample of size at least poly($\frac{1}{\epsilon}$, $\frac{1}{\delta}$, size($c$)) s.t. $P(\mathcal{R}(\hat{c})-\inf_{c\in C}\mathcal{R}(c)\le\epsilon) \ge 1-\delta$.
     \item $\mathcal{A}$ is called an efficient PAC algorithm if it runs in polynomial of $\frac{1}{\epsilon}$ and $\frac{1}{\delta}$.
     \item $\mathcal{C}$ is (efficiently) PAC-learnable from $\mathcal{H}$ if there is an algorithm $\mathcal{A}$ that (efficiently) learns $C$ from $\mathcal{H}$.
-    \item VC inequality\begin{scriptsize}$\mathcal{R}(\hat{c}_{n}^{\star})-\mathcal{R}(c^{\star}) \leq 2 \sup _{c \in \mathcal{C}}|\hat{\mathcal{R}}_{n}(c)-\mathcal{R}(c)|$\end{scriptsize}.
+    \item VC inequality: $\mathcal{R}(\hat{c}_{n}^{\star})-\mathcal{R}(c^{\star}) \leq 2 \sup _{c \in \mathcal{C}}|\hat{\mathcal{R}}_{n}(c)-\mathcal{R}(c)|$.
     \item $|\mathcal{C}|<\infty$, feasible case $\min _{c \in \mathcal{C}} \mathcal{R}(c)=0$, $\mathbf{P}\{\mathcal{R}(\hat{c}_{n}^{\star})>\epsilon\} \leq|\mathcal{C}| \exp (-n \epsilon)$. 
         Proof $\mathbf{P}\{\mathcal{R}(\hat{c}_{n}^{\star})>\epsilon\} \leq \mathbf{P}\{\max _{c \in \mathcal{C}: \hat{\mathcal{R}}_{n}(c)=0} \mathcal{R}(c)>\epsilon\} = \mathbb{E}\{\max _{c \in \mathcal{C}} \mathbb{I}_{\{\hat{\mathcal{R}}_{n}(c)=0\}} \mathbb{I}_{\{\mathcal{R}(c)>\epsilon\}}\}\leq \sum_{c \in \mathcal{C}: \mathcal{R}(c)>\epsilon} \mathbf{P}\{$\\$\hat{\mathcal{R}}_{n}(c)=0\} \leq|\mathcal{C}| \exp (-n \epsilon)$
 

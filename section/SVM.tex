@@ -15,9 +15,9 @@ Introduce slack variables $\xi_i := \max \{1 - y_i(w^{\top}x_i + b), 0\} = [1 - 
 
 \textbf{Primal}: $\min_{w,b} \frac{1}{2} w^2 + C\sum_i\xi_i = \min_{w,b} \frac{1}{2} w^2 + C[1 - y_i(w^{\top}x_i + b)]_{+}$.  Hinge loss $[1-x]_{+}$.
 
-Equivalent form: $\min_{w,b} \frac{1}{2} w^2 + C\sum_i\xi_i$ s.t. $ y_i(w^{\top}x_i + b) \geq 1-\xi_i$ and $\xi_i \geq 0$
+Equivalent form: $\min_{w,b} \frac{1}{2} w^2 + C\sum_i\xi_i$ s.t. $ y_i(w^{\top}x_i + b) \geq 1-\xi_i$ and $\xi_i \geq 0$.
 
-\textbf{Dual}: $\max_{\alpha} \sum_{i} \alpha_{i} - \frac{1}{2}\sum_{i,j}\alpha_{i} \alpha_{j} y_{i} y_{j} K(x_i, x_j)$ s.t. $\sum_i \alpha_i y_i=0 $ and $0\leq \alpha_i \leq C$
+\textbf{Dual}: $\max_{\alpha} \sum_{i} \alpha_{i} - \frac{1}{2}\sum_{i,j}\alpha_{i} \alpha_{j} y_{i} y_{j} K(x_i, x_j)$ s.t. $\sum_i \alpha_i y_i=0 $ and $0\leq \alpha_i \leq C$.
 
 
 \subsection*{Multi-class SVM}
